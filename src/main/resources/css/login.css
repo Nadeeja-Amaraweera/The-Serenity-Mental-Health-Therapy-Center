@@ -1,0 +1,522 @@
+/* login.css - Modern Design for Serenity Therapy Center */
+/* Complete CSS file for login.fxml */
+
+/* Root styles */
+.root {
+    -fx-font-family: 'Segoe UI', 'Roboto', 'System', sans-serif;
+}
+
+.mainFxmlClass {
+    -fx-background-color: white;
+}
+
+/* Left Panel Styles - Branding Section */
+.left-panel {
+    -fx-background: linear-gradient(from 0% 0% to 100% 100%, #2c3e50, #3498db);
+    -fx-background-color: linear-gradient(to bottom right, #2c3e50, #3498db);
+}
+
+.logo-icon {
+    -fx-font-size: 80px;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 2);
+}
+
+.brand-title {
+    -fx-font-size: 36px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-font-family: 'Georgia', serif;
+}
+
+.brand-subtitle {
+    -fx-font-size: 16px;
+    -fx-text-fill: rgba(255,255,255,0.9);
+    -fx-wrap-text: true;
+    -fx-text-alignment: center;
+}
+
+.brand-line {
+    -fx-fill: rgba(255,255,255,0.5);
+    -fx-stroke: rgba(255,255,255,0.5);
+}
+
+.tagline {
+    -fx-font-size: 14px;
+    -fx-text-fill: rgba(255,255,255,0.8);
+    -fx-font-style: italic;
+}
+
+.features {
+    -fx-background-color: rgba(255,255,255,0.1);
+    -fx-background-radius: 10;
+    -fx-padding: 15 20 15 20;
+}
+
+.features Label {
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-font-weight: normal;
+}
+
+/* Right Panel Styles - Login Form Section */
+.right-panel {
+    -fx-background-color: white;
+}
+
+/* Welcome Section */
+.welcome-title {
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.welcome-subtitle {
+    -fx-font-size: 14px;
+    -fx-text-fill: #7f8c8d;
+}
+
+/* Input Label Styles */
+.input-label {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #34495e;
+    -fx-padding: 0 0 5 0;
+}
+
+/* Input Field Styles */
+.input-field {
+    -fx-background-color: #f8f9fa;
+    -fx-background-radius: 8;
+    -fx-border-color: #dee2e6;
+    -fx-border-radius: 8;
+    -fx-border-width: 1;
+    -fx-padding: 0 15;
+    -fx-font-size: 14px;
+    -fx-prompt-text-fill: #adb5bd;
+    -fx-transition: all 0.3s ease;
+}
+
+.input-field:focused {
+    -fx-background-color: white;
+    -fx-border-color: #3498db;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(gaussian, rgba(52,152,219,0.3), 5, 0, 0, 0);
+}
+
+.input-field:error {
+    -fx-border-color: #e74c3c;
+}
+
+/* TextField and PasswordField specific styles */
+.text-field, .password-field {
+    -fx-background-color: #f8f9fa;
+    -fx-background-radius: 8;
+    -fx-border-color: #dee2e6;
+    -fx-border-radius: 8;
+    -fx-border-width: 1;
+    -fx-padding: 0 15;
+    -fx-font-size: 14px;
+}
+
+.text-field:focused, .password-field:focused {
+    -fx-background-color: white;
+    -fx-border-color: #3498db;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(gaussian, rgba(52,152,219,0.3), 5, 0, 0, 0);
+}
+
+/* Checkbox Styles */
+.checkbox {
+    -fx-font-size: 12px;
+    -fx-text-fill: #34495e;
+}
+
+.checkbox .box {
+    -fx-background-color: #f8f9fa;
+    -fx-border-color: #dee2e6;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+    -fx-pref-width: 16;
+    -fx-pref-height: 16;
+}
+
+.checkbox:selected .box {
+    -fx-background-color: #3498db;
+    -fx-border-color: #3498db;
+}
+
+.checkbox:selected .box .mark {
+    -fx-background-color: white;
+}
+
+.checkbox:hover {
+    -fx-cursor: hand;
+}
+
+/* Forgot Password Link */
+.forgot-link {
+    -fx-font-size: 12px;
+    -fx-text-fill: #3498db;
+    -fx-border-color: transparent;
+    -fx-padding: 0;
+}
+
+.forgot-link:hover {
+    -fx-text-fill: #2980b9;
+    -fx-cursor: hand;
+    -fx-underline: true;
+}
+
+/* Login Button Styles */
+.login-button {
+    -fx-background-color: #3498db;
+    -fx-background-radius: 8;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(52,152,219,0.4), 5, 0, 0, 2);
+    -fx-transition: all 0.3s ease;
+}
+
+.login-button:hover {
+    -fx-background-color: #2980b9;
+    -fx-effect: dropshadow(gaussian, rgba(52,152,219,0.6), 8, 0, 0, 3);
+}
+
+.login-button:pressed {
+    -fx-translate-y: 1;
+}
+
+.login-button:disabled {
+    -fx-opacity: 0.6;
+    -fx-cursor: default;
+}
+
+/* Error Label Styles */
+.error-label {
+    -fx-text-fill: #e74c3c;
+    -fx-font-size: 12px;
+    -fx-wrap-text: true;
+    -fx-padding: 10 0 0 0;
+    -fx-alignment: center;
+    -fx-background-color: rgba(231, 76, 60, 0.1);
+    -fx-background-radius: 5;
+    -fx-padding: 8 12 8 12;
+}
+
+/* Register/Contact Links */
+.register-text {
+    -fx-font-size: 12px;
+    -fx-text-fill: #7f8c8d;
+}
+
+.register-link {
+    -fx-font-size: 12px;
+    -fx-text-fill: #3498db;
+    -fx-border-color: transparent;
+}
+
+.register-link:hover {
+    -fx-text-fill: #2980b9;
+    -fx-cursor: hand;
+    -fx-underline: true;
+}
+
+/* Loading Indicator Styles */
+.progress-indicator {
+    -fx-progress-color: #3498db;
+    -fx-pref-width: 40;
+    -fx-pref-height: 40;
+}
+
+.progress-indicator .percentage {
+    -fx-fill: null;
+}
+
+/* Hyperlink Styles */
+.hyperlink {
+    -fx-text-fill: #3498db;
+    -fx-border-color: transparent;
+}
+
+.hyperlink:hover {
+    -fx-text-fill: #2980b9;
+    -fx-cursor: hand;
+}
+
+/* Alert Dialog Styling */
+.custom-alert {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+}
+
+.custom-alert .header-panel {
+    -fx-background-color: #3498db;
+    -fx-background-radius: 10 10 0 0;
+}
+
+.custom-alert .header-panel .label {
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.custom-alert .content {
+    -fx-font-size: 13px;
+}
+
+/* Dialog Pane Styles */
+.dialog-pane {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+}
+
+.dialog-pane .header-panel {
+    -fx-background-color: #3498db;
+}
+
+.dialog-pane .header-panel .label {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.dialog-pane .button {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-background-radius: 5;
+}
+
+.dialog-pane .button:hover {
+    -fx-background-color: #2980b9;
+    -fx-cursor: hand;
+}
+
+/* Tooltip Styles */
+.tooltip {
+    -fx-background-color: #34495e;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-background-radius: 5;
+    -fx-padding: 5 10 5 10;
+}
+
+/* ScrollPane Styles (if needed) */
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+/* Responsive Design - Media Queries */
+/* Note: JavaFX doesn't fully support CSS media queries,
+   but these are included for documentation */
+@media (max-width: 768px) {
+    .left-panel {
+        -fx-pref-width: 100%;
+    }
+
+    .welcome-title {
+        -fx-font-size: 24px;
+    }
+
+    .brand-title {
+        -fx-font-size: 28px;
+    }
+
+    .logo-icon {
+        -fx-font-size: 60px;
+    }
+}
+
+/* Animation Effects */
+@keyframes fadeIn {
+    from { -fx-opacity: 0; }
+    to { -fx-opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { -fx-translate-x: -50; -fx-opacity: 0; }
+    to { -fx-translate-x: 0; -fx-opacity: 1; }
+}
+
+.mainFxmlClass {
+    -fx-animation: fadeIn 0.5s ease-in;
+}
+
+.right-panel {
+    -fx-animation: slideIn 0.5s ease-out;
+}
+
+/* Placeholder Styles */
+.text-field:prompt, .password-field:prompt {
+    -fx-prompt-text-fill: #adb5bd;
+}
+
+/* Focus Traversal - Remove default focus ring */
+.text-field:focused, .password-field:focused {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+.button:focused {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+/* Success State Styles */
+.success-label {
+    -fx-text-fill: #27ae60;
+    -fx-font-size: 12px;
+    -fx-background-color: rgba(39, 174, 96, 0.1);
+    -fx-background-radius: 5;
+    -fx-padding: 8 12 8 12;
+}
+
+/* Warning State Styles */
+.warning-label {
+    -fx-text-fill: #f39c12;
+    -fx-font-size: 12px;
+    -fx-background-color: rgba(243, 156, 18, 0.1);
+    -fx-background-radius: 5;
+    -fx-padding: 8 12 8 12;
+}
+
+/* Info State Styles */
+.info-label {
+    -fx-text-fill: #3498db;
+    -fx-font-size: 12px;
+    -fx-background-color: rgba(52, 152, 219, 0.1);
+    -fx-background-radius: 5;
+    -fx-padding: 8 12 8 12;
+}
+
+/* Separator Styles */
+.separator .line {
+    -fx-border-color: #dee2e6;
+    -fx-border-width: 1;
+}
+
+/* Context Menu Styles */
+.context-menu {
+    -fx-background-color: white;
+    -fx-background-radius: 5;
+    -fx-border-color: #dee2e6;
+    -fx-border-radius: 5;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, 2);
+}
+
+.menu-item {
+    -fx-padding: 8 20 8 20;
+}
+
+.menu-item:hover {
+    -fx-background-color: #3498db;
+}
+
+.menu-item:hover .label {
+    -fx-text-fill: white;
+}
+
+/* ComboBox Styles (if needed) */
+.combo-box {
+    -fx-background-color: #f8f9fa;
+    -fx-border-color: #dee2e6;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+.combo-box:focused {
+    -fx-border-color: #3498db;
+}
+
+.combo-box .list-cell {
+    -fx-background-color: white;
+    -fx-text-fill: #34495e;
+}
+
+.combo-box .list-cell:hover {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+}
+
+/* RadioButton Styles */
+.radio-button {
+    -fx-font-size: 12px;
+    -fx-text-fill: #34495e;
+}
+
+.radio-button .radio {
+    -fx-background-color: #f8f9fa;
+    -fx-border-color: #dee2e6;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+}
+
+.radio-button:selected .radio {
+    -fx-background-color: #3498db;
+    -fx-border-color: #3498db;
+}
+
+.radio-button:selected .radio .dot {
+    -fx-background-color: white;
+}
+
+/* DatePicker Styles */
+.date-picker {
+    -fx-background-color: #f8f9fa;
+    -fx-border-color: #dee2e6;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+.date-picker:focused {
+    -fx-border-color: #3498db;
+}
+
+.date-picker .arrow-button {
+    -fx-background-color: #f8f9fa;
+}
+
+.date-picker .arrow-button:hover {
+    -fx-background-color: #e9ecef;
+}
+
+/* TableView Styles (for dashboard) */
+.table-view {
+    -fx-background-color: white;
+    -fx-border-color: #dee2e6;
+    -fx-border-radius: 5;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #f8f9fa;
+    -fx-border-color: #dee2e6;
+}
+
+.table-view .column-header {
+    -fx-background-color: #f8f9fa;
+    -fx-border-color: #dee2e6;
+}
+
+.table-view .table-cell {
+    -fx-border-color: #dee2e6;
+    -fx-padding: 8 12 8 12;
+}
+
+.table-row-cell:hover {
+    -fx-background-color: #f8f9fa;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #3498db;
+}
+
+.table-row-cell:selected .table-cell {
+    -fx-text-fill: white;
+}
