@@ -1,5 +1,8 @@
+lk/ijse/serenitymentalhealthsystem/entity/Role.class
+lk/ijse/serenitymentalhealthsystem/App.class
+lk/ijse/serenitymentalhealthsystem/entity/User.class
 module-info.class
 lk/ijse/serenitymentalhealthsystem/controller/ReceptionistDashboardController.class
 lk/ijse/serenitymentalhealthsystem/controller/AdminDashboardController.class
-lk/ijse/serenitymentalhealthsystem/App.class
+lk/ijse/serenitymentalhealthsystem/dao/UserDAO.class
 lk/ijse/serenitymentalhealthsystem/controller/LoginController.class

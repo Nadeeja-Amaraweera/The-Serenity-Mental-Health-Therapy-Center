@@ -4,6 +4,8 @@ module lk.ijse.serenitymentalhealthsystem {
     requires java.base;
     requires org.controlsfx.controls;
     requires jakarta.persistence;
+    requires static lombok;
+    requires org.hibernate.orm.core;
 
     opens lk.ijse.serenitymentalhealthsystem to javafx.fxml;
     exports lk.ijse.serenitymentalhealthsystem;

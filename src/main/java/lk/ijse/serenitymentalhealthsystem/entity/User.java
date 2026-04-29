@@ -2,6 +2,13 @@ package lk.ijse.serenitymentalhealthsystem.entity;
 
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 
 @Entity
 @Table(name = "users")
@@ -14,15 +21,4 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    public User(){}
-
-    public User(String username, String password, Role role) {
-        this.username = username;
-        this.password = password;
-        this.role = role;
-    }
-
-    public String getUsername() { return username; }
-    public String getPassword() { return password; }
-    public Role getRole() { return role; }
 }

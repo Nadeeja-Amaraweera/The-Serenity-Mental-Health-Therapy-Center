@@ -3,3 +3,6 @@
 /home/nadeeja/ThisPC/My Projects/SerenityMentalHealthSystem/src/main/java/lk/ijse/serenitymentalhealthsystem/controller/LoginController.java
 /home/nadeeja/ThisPC/My Projects/SerenityMentalHealthSystem/src/main/java/module-info.java
 /home/nadeeja/ThisPC/My Projects/SerenityMentalHealthSystem/src/main/java/lk/ijse/serenitymentalhealthsystem/controller/AdminDashboardController.java
+/home/nadeeja/ThisPC/My Projects/SerenityMentalHealthSystem/src/main/java/lk/ijse/serenitymentalhealthsystem/entity/Role.java
+/home/nadeeja/ThisPC/My Projects/SerenityMentalHealthSystem/src/main/java/lk/ijse/serenitymentalhealthsystem/dao/UserDAO.java
+/home/nadeeja/ThisPC/My Projects/SerenityMentalHealthSystem/src/main/java/lk/ijse/serenitymentalhealthsystem/entity/User.java
