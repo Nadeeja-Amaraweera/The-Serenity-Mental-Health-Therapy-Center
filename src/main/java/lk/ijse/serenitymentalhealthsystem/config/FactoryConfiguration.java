@@ -5,11 +5,12 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+
 public class FactoryConfiguration {
     private static FactoryConfiguration factoryConfiguration;
     private SessionFactory sessionFactory;
 
-    private FactoryConfiguration(){
+    private FactoryConfiguration() {
         Configuration configuration = new Configuration();
         configuration.configure("hibernate.cfg.xml");
 
@@ -18,17 +19,23 @@ public class FactoryConfiguration {
         sessionFactory = configuration.buildSessionFactory();
     }
 
-    public static FactoryConfiguration getInstance(){
+    public static FactoryConfiguration getInstance() {
         return factoryConfiguration == null ?
                 factoryConfiguration = new FactoryConfiguration() :
                 factoryConfiguration;
     }
 
+    // new session
     public Session getSession() {
         return sessionFactory.openSession();
     }
 
-    public Session getCurrentSession(){
+    // return same object
+    // thread bound session
+    // auto close -> commit , rollback
+    // recommend for layered dao + (service) bo architecture
+    //     <property name="hibernate.current_session_context_class">thread</property>
+    public Session getCurrentSession() {
         return sessionFactory.getCurrentSession();
     }
 }

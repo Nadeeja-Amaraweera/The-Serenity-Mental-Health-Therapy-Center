@@ -1,4 +1,8 @@
 package lk.ijse.serenitymentalhealthsystem.bo.custom;
 
-public interface UserBO {
+import lk.ijse.serenitymentalhealthsystem.bo.SuperBO;
+import lk.ijse.serenitymentalhealthsystem.entity.User;
+
+public interface UserBO extends SuperBO {
+
 }

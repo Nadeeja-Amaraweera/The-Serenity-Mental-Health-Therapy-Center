@@ -1,4 +1,8 @@
 package lk.ijse.serenitymentalhealthsystem.dao.custom.impl;
 
-public class UserDAOImpl {
+import lk.ijse.serenitymentalhealthsystem.dao.custom.UserDAO;
+import lk.ijse.serenitymentalhealthsystem.entity.User;
+
+public class UserDAOImpl implements UserDAO {
+
 }

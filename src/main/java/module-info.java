@@ -2,9 +2,10 @@ module lk.ijse.serenitymentalhealthsystem {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.base;
-    requires org.controlsfx.controls;
     requires jakarta.persistence;
     requires static lombok;
+    requires java.naming;
+    requires java.sql;
     requires org.hibernate.orm.core;
 
     opens lk.ijse.serenitymentalhealthsystem to javafx.fxml;
