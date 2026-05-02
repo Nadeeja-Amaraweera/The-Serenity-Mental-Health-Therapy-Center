@@ -15,11 +15,8 @@ public class BOFactory {
     }
     @SuppressWarnings("unchecked")
     public <T extends SuperBO> T getBO(BOTypes boTypes) {
-        switch (boTypes) {
-            case USER:
-                return (T) new UserBOImpl();
-            default:
-                return null;
-        }
+        return switch (boTypes) {
+            case USER -> (T) new UserBOImpl();
+        };
     }
 }

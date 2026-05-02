@@ -14,13 +14,10 @@ public class DAOFactory {
         }
         return daoFactory;
     }
-    public <T extends SuperDAO> T getDAO (DAOTypes type){
-        switch (type){
-            case USER:
-                return (T) new UserDAOImpl();
+    public <T extends SuperDAO> T getDAO (DAOTypes daoType){
+       return switch (daoType){
+            case USER ->(T) new UserDAOImpl();
 
-            default:
-                return null;
-        }
+       };
     }
 }
