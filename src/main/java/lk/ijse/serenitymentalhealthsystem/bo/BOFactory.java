@@ -7,7 +7,7 @@ public class BOFactory {
 
     private BOFactory(){};
 
-    public static BOFactory getBoFactory(){
+    public static BOFactory getInstance(){
         if (boFactory == null) {
             boFactory = new BOFactory();
         }

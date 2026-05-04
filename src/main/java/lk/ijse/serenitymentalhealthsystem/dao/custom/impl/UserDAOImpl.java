@@ -2,6 +2,7 @@ package lk.ijse.serenitymentalhealthsystem.dao.custom.impl;
 
 import lk.ijse.serenitymentalhealthsystem.config.FactoryConfiguration;
 import lk.ijse.serenitymentalhealthsystem.dao.custom.UserDAO;
+import lk.ijse.serenitymentalhealthsystem.entity.Role;
 import lk.ijse.serenitymentalhealthsystem.entity.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -26,5 +27,10 @@ public class UserDAOImpl implements UserDAO {
         } finally {
             session.close();
         }
+    }
+
+    @Override
+    public boolean login(String username, String password, Role role) throws SQLException {
+        return false;
     }
 }

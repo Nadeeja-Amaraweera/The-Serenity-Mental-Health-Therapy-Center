@@ -15,9 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 
-<?import java.lang.String?>
-<?import java.net.URL?>
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="900.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/25"  xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.serenitymentalhealthsystem.controller.LoginController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="900.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.serenitymentalhealthsystem.controller.LoginController">
 
 
     <children>
@@ -93,13 +91,14 @@
 
                             <!-- Options Row -->
                             <HBox alignment="CENTER_LEFT" spacing="15">
-                                <CheckBox fx:id="showPasswordCheckbox" styleClass="checkbox" text="Show Password" onAction="#togglePasswordVisibility"/>
+                                <CheckBox fx:id="showPasswordCheckbox" onAction="#togglePasswordVisibility" styleClass="checkbox" text="Show Password" />
                                 <Region HBox.hgrow="ALWAYS" />
                                 <Hyperlink styleClass="forgot-link" text="Forgot Password?" />
                             </HBox>
 
                             <!-- Login Button -->
                             <Button maxWidth="Infinity" onAction="#login" prefHeight="45" styleClass="login-button" text="LOGIN" />
+                     <Button maxWidth="Infinity" onAction="#register" prefHeight="45" styleClass="login-button" text="REGISTER" />
 
                             <!-- Error Label -->
                             <Label fx:id="errorLabel" styleClass="error-label" wrapText="true" />
