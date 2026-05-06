@@ -48,27 +48,27 @@
             <VBox spacing="8">
                 <Label styleClass="menu-category" text="MAIN MENU" />
 
-                <Button prefHeight="26.0" prefWidth="239.0" styleClass="sidebar-button-active" text="Dashboard" />
+                <Button fx:id="dashboardBtn" onAction="#showDashboard" prefHeight="26.0" prefWidth="239.0" styleClass="sidebar-button-active" text="Dashboard" />
 
-                <Button onAction="#loadPatientManagementPage" prefHeight="26.0" prefWidth="246.0" styleClass="sidebar-button" text="Patient Management" />
+                <Button fx:id="patientManagementBtn" onAction="#loadPatientManagementPage" prefHeight="26.0" prefWidth="246.0" styleClass="sidebar-button" text="Patient Management" />
 
-                <Button onAction="#therapistManagementPage" prefHeight="26.0" prefWidth="246.0" styleClass="sidebar-button" text="Therapist Management" />
+                <Button fx:id="therapistManagementBtn" onAction="#therapistManagementPage" prefHeight="26.0" prefWidth="246.0" styleClass="sidebar-button" text="Therapist Management" />
 
-                <Button onAction="#programManagementPage" prefHeight="26.0" prefWidth="268.0" styleClass="sidebar-button" text="Program Management" />
+                <Button fx:id="programManagementBtn" onAction="#programManagementPage" prefHeight="26.0" prefWidth="268.0" styleClass="sidebar-button" text="Program Management" />
 
-                <Button prefHeight="26.0" prefWidth="248.0" styleClass="sidebar-button" text="Session Scheduling" />
+                <Button fx:id="sessionSchedulingBtn" onAction="#sessionSchedulingPage" prefHeight="26.0" prefWidth="248.0" styleClass="sidebar-button" text="Session Scheduling" />
 
-                <Button prefHeight="26.0" prefWidth="242.0" styleClass="sidebar-button" text="Payment Management" />
+                <Button fx:id="paymentManagementBtn" onAction="#paymentManagementPage" prefHeight="26.0" prefWidth="242.0" styleClass="sidebar-button" text="Payment Management" />
 
-                <Button prefHeight="26.0" prefWidth="246.0" styleClass="sidebar-button" text="Reports  Analytics" />
+                <Button fx:id="reportsAnalyticsBtn" onAction="#reportsAnalyticsPage" prefHeight="26.0" prefWidth="246.0" styleClass="sidebar-button" text="Reports  Analytics" />
 
                 <Separator styleClass="sidebar-separator" />
 
                 <Label styleClass="menu-category" text="ACCOUNT" />
 
-                <Button prefHeight="26.0" prefWidth="238.0" styleClass="sidebar-button" text="My Profile" />
+                <Button fx:id="myProfileBtn" onAction="#myProfilePage" prefHeight="26.0" prefWidth="238.0" styleClass="sidebar-button" text="My Profile" />
 
-                <Button prefHeight="26.0" prefWidth="244.0" styleClass="sidebar-button" text="Change Password" />
+                <Button fx:id="changePasswordBtn" onAction="#changePasswordPage" prefHeight="26.0" prefWidth="244.0" styleClass="sidebar-button" text="Change Password" />
             </VBox>
         </VBox>
     </left>

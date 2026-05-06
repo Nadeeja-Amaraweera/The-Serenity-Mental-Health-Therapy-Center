@@ -11,6 +11,7 @@ lk/ijse/serenitymentalhealthsystem/controller/AdminDashboardController.class
 lk/ijse/serenitymentalhealthsystem/dao/SQLUtil.class
 lk/ijse/serenitymentalhealthsystem/bo/BOTypes.class
 lk/ijse/serenitymentalhealthsystem/bo/BOFactory.class
+lk/ijse/serenitymentalhealthsystem/controller/TherapistManagementController.class
 lk/ijse/serenitymentalhealthsystem/dao/custom/impl/UserDAOImpl.class
 lk/ijse/serenitymentalhealthsystem/bo/SuperBO.class
 lk/ijse/serenitymentalhealthsystem/dao/DAOFactory.class
@@ -18,6 +19,8 @@ lk/ijse/serenitymentalhealthsystem/entity/User.class
 lk/ijse/serenitymentalhealthsystem/bo/custom/UserBO.class
 lk/ijse/serenitymentalhealthsystem/config/FactoryConfiguration.class
 lk/ijse/serenitymentalhealthsystem/bo/custom/impl/UserBOImpl.class
+lk/ijse/serenitymentalhealthsystem/controller/PatientManagementController.class
+lk/ijse/serenitymentalhealthsystem/controller/ProgramManagementController.class
 lk/ijse/serenitymentalhealthsystem/controller/LoginController$1.class
 lk/ijse/serenitymentalhealthsystem/controller/LoginController.class
 lk/ijse/serenitymentalhealthsystem/dto/UserDTO.class

@@ -7,7 +7,10 @@
 /home/nadeeja/ThisPC/My Projects/SerenityMentalHealthSystem/src/main/java/lk/ijse/serenitymentalhealthsystem/config/FactoryConfiguration.java
 /home/nadeeja/ThisPC/My Projects/SerenityMentalHealthSystem/src/main/java/lk/ijse/serenitymentalhealthsystem/controller/AdminDashboardController.java
 /home/nadeeja/ThisPC/My Projects/SerenityMentalHealthSystem/src/main/java/lk/ijse/serenitymentalhealthsystem/controller/LoginController.java
+/home/nadeeja/ThisPC/My Projects/SerenityMentalHealthSystem/src/main/java/lk/ijse/serenitymentalhealthsystem/controller/PatientManagementController.java
+/home/nadeeja/ThisPC/My Projects/SerenityMentalHealthSystem/src/main/java/lk/ijse/serenitymentalhealthsystem/controller/ProgramManagementController.java
 /home/nadeeja/ThisPC/My Projects/SerenityMentalHealthSystem/src/main/java/lk/ijse/serenitymentalhealthsystem/controller/ReceptionistDashboardController.java
+/home/nadeeja/ThisPC/My Projects/SerenityMentalHealthSystem/src/main/java/lk/ijse/serenitymentalhealthsystem/controller/TherapistManagementController.java
 /home/nadeeja/ThisPC/My Projects/SerenityMentalHealthSystem/src/main/java/lk/ijse/serenitymentalhealthsystem/dao/CrudDAO.java
 /home/nadeeja/ThisPC/My Projects/SerenityMentalHealthSystem/src/main/java/lk/ijse/serenitymentalhealthsystem/dao/DAOFactory.java
 /home/nadeeja/ThisPC/My Projects/SerenityMentalHealthSystem/src/main/java/lk/ijse/serenitymentalhealthsystem/dao/DAOTypes.java

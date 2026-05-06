@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import java.net.URL?>
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<AnchorPane id="AnchorPane"
+            prefHeight="780.0"
+            prefWidth="1180.0"
+            styleClass="mainFxmlClass"
+            xmlns:fx="http://javafx.com/fxml/1"
+            xmlns="http://javafx.com/javafx/25"
+            fx:controller="lk.ijse.serenitymentalhealthsystem.controller.PatientManagementController">
+
+    <stylesheets>
+        <URL value="@/css/patientmanagement.css"/>
+    </stylesheets>
+
+    <!-- ╔══════════════════════════════════════════════════════════════════╗
+         ║  Root BorderPane — anchored to fill the AnchorPane              ║
+         ╚══════════════════════════════════════════════════════════════════╝ -->
+    <BorderPane styleClass="root-pane"
+                AnchorPane.topAnchor="0"
+                AnchorPane.bottomAnchor="0"
+                AnchorPane.leftAnchor="0"
+                AnchorPane.rightAnchor="0">
+
+        <!-- ╔══════════════════════════════════╗
+             ║  CENTER — MAIN CONTENT           ║
+             ╚══════════════════════════════════╝ -->
+        <center>
+            <VBox styleClass="content-area" spacing="0">
+
+                <!-- Page header + stat chips -->
+                <HBox styleClass="top-header" alignment="CENTER_LEFT" spacing="16">
+                    <VBox spacing="3" HBox.hgrow="ALWAYS">
+                        <Label text="Patient Management"                                            styleClass="page-title"/>
+                        <Label text="Manage patient records, enrollments &amp; therapy history"     styleClass="page-subtitle"/>
+                    </VBox>
+
+                    <HBox spacing="10" alignment="CENTER">
+                        <VBox styleClass="stat-chip chip-blue"  alignment="CENTER" spacing="2">
+                            <Label fx:id="lblTotalPatients" text="3,241" styleClass="stat-value"/>
+                            <Label text="Total Patients"                  styleClass="stat-label"/>
+                        </VBox>
+                        <VBox styleClass="stat-chip chip-green" alignment="CENTER" spacing="2">
+                            <Label fx:id="lblActivePatients" text="2,876" styleClass="stat-value"/>
+                            <Label text="Active"                          styleClass="stat-label"/>
+                        </VBox>
+                        <VBox styleClass="stat-chip chip-amber" alignment="CENTER" spacing="2">
+                            <Label fx:id="lblNewThisMonth" text="48"      styleClass="stat-value"/>
+                            <Label text="New This Month"                  styleClass="stat-label"/>
+                        </VBox>
+                    </HBox>
+                </HBox>
+
+                <!-- Toolbar: search · filters · actions -->
+                <HBox styleClass="toolbar" alignment="CENTER_LEFT" spacing="12">
+
+                    <StackPane styleClass="search-wrap" HBox.hgrow="ALWAYS">
+                        <Label text="⌕" styleClass="search-icon"/>
+                        <TextField fx:id="txtSearch"
+                                   promptText="Search by name, NIC, email or phone…"
+                                   styleClass="search-field"
+                                   />
+                    </StackPane>
+
+                    <ComboBox fx:id="cmbStatusFilter"
+                              promptText="All Statuses"
+                              styleClass="filter-combo"
+                              >
+                        <items>
+                            <FXCollections fx:factory="observableArrayList">
+                                <String fx:value="All Statuses"/>
+                                <String fx:value="Active"/>
+                                <String fx:value="Inactive"/>
+                                <String fx:value="Discharged"/>
+                            </FXCollections>
+                        </items>
+                    </ComboBox>
+
+                    <ComboBox fx:id="cmbProgramFilter"
+                              promptText="All Programs"
+                              styleClass="filter-combo"
+                              />
+
+                    <Separator orientation="VERTICAL" styleClass="toolbar-sep"/>
+
+                    <Button fx:id="btnExport"
+                            text="↑  Export"
+                            styleClass="btn-secondary"
+                            />
+
+                    <Button fx:id="btnAddPatient"
+                            text="+  Add Patient"
+                            styleClass="btn-primary"
+                            />
+                </HBox>
+
+                <!-- Patient table -->
+                <StackPane VBox.vgrow="ALWAYS" styleClass="table-wrapper">
+                    <TableView fx:id="tblPatients"
+                               styleClass="patient-table"
+                               >
+                        <columns>
+
+                            <TableColumn text="ID"           fx:id="colId"         minWidth="65"  maxWidth="75">
+                                <cellValueFactory><PropertyValueFactory property="patientId"/></cellValueFactory>
+                            </TableColumn>
+
+                            <TableColumn text="PATIENT NAME" fx:id="colName"       minWidth="170" prefWidth="195">
+                                <cellValueFactory><PropertyValueFactory property="fullName"/></cellValueFactory>
+                            </TableColumn>
+
+                            <TableColumn text="AGE"          fx:id="colAge"        minWidth="55"  maxWidth="65">
+                                <cellValueFactory><PropertyValueFactory property="age"/></cellValueFactory>
+                            </TableColumn>
+
+                            <TableColumn text="GENDER"       fx:id="colGender"     minWidth="80"  maxWidth="90">
+                                <cellValueFactory><PropertyValueFactory property="gender"/></cellValueFactory>
+                            </TableColumn>
+
+                            <TableColumn text="CONTACT"      fx:id="colContact"    minWidth="130" prefWidth="148">
+                                <cellValueFactory><PropertyValueFactory property="phone"/></cellValueFactory>
+                            </TableColumn>
+
+                            <TableColumn text="EMAIL"        fx:id="colEmail"      minWidth="170" prefWidth="195">
+                                <cellValueFactory><PropertyValueFactory property="email"/></cellValueFactory>
+                            </TableColumn>
+
+                            <TableColumn text="PROGRAMS"     fx:id="colPrograms"   minWidth="100" prefWidth="115">
+                                <cellValueFactory><PropertyValueFactory property="programCount"/></cellValueFactory>
+                            </TableColumn>
+
+                            <TableColumn text="REGISTERED"   fx:id="colRegistered" minWidth="105" prefWidth="120">
+                                <cellValueFactory><PropertyValueFactory property="registrationDate"/></cellValueFactory>
+                            </TableColumn>
+
+                            <TableColumn text="STATUS"       fx:id="colStatus"     minWidth="90"  maxWidth="105">
+                                <cellValueFactory><PropertyValueFactory property="status"/></cellValueFactory>
+                            </TableColumn>
+
+                            <TableColumn text="ACTIONS"      fx:id="colActions"    minWidth="115" maxWidth="128" sortable="false">
+                                <cellValueFactory><PropertyValueFactory property="actions"/></cellValueFactory>
+                            </TableColumn>
+
+                        </columns>
+
+                        <placeholder>
+                            <VBox alignment="CENTER" spacing="12" styleClass="table-empty">
+                                <Label text="◎"                                  styleClass="empty-icon"/>
+                                <Label text="No patients found"                  styleClass="empty-title"/>
+                                <Label text="Try adjusting your search or filters" styleClass="empty-sub"/>
+                            </VBox>
+                        </placeholder>
+                    </TableView>
+                </StackPane>
+
+                <!-- Footer: row count + pagination -->
+                <HBox styleClass="footer-bar" alignment="CENTER_LEFT" spacing="14">
+
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <HBox spacing="5" alignment="CENTER">
+                        <Button fx:id="btnFirstPage"    text="«" styleClass="page-btn" />
+                        <Button fx:id="btnPrevPage"     text="‹" styleClass="page-btn" />
+                        <Label  fx:id="lblCurrentPage"  text="1"   styleClass="page-current"/>
+                        <Label  text="of"                           styleClass="page-of"/>
+                        <Label  fx:id="lblTotalPages"   text="163" styleClass="page-total"/>
+                        <Button fx:id="btnNextPage"     text="›" styleClass="page-btn" />
+                        <Button fx:id="btnLastPage"     text="»" styleClass="page-btn" />
+                    </HBox>
+                    <ComboBox fx:id="cmbRowsPerPage" styleClass="rows-combo">
+                        <items>
+                            <FXCollections fx:factory="observableArrayList">
+                                <String fx:value="10 rows"/>
+                                <String fx:value="20 rows"/>
+                                <String fx:value="50 rows"/>
+                                <String fx:value="100 rows"/>
+                            </FXCollections>
+                        </items>
+                        <value><String fx:value="20 rows"/></value>
+                    </ComboBox>
+                </HBox>
+
+            </VBox>
+        </center>
+
+        <!-- ╔══════════════════════════════════╗
+             ║  RIGHT — DETAIL SLIDE PANEL      ║
+             ╚══════════════════════════════════╝ -->
+        <right>
+            <VBox fx:id="detailPanel"
+                  styleClass="detail-panel"
+                  spacing="0"
+                  managed="false"
+                  visible="false"
+                  minWidth="310" maxWidth="330">
+
+                <HBox styleClass="detail-header" alignment="CENTER_LEFT" spacing="10">
+                    <Label text="Patient Details" styleClass="detail-title" HBox.hgrow="ALWAYS"/>
+                    <Button text="✕" styleClass="close-detail-btn" />
+                </HBox>
+
+                <ScrollPane styleClass="detail-scroll" fitToWidth="true" VBox.vgrow="ALWAYS">
+                    <VBox spacing="18" styleClass="detail-body">
+
+                        <!-- Avatar -->
+                        <VBox alignment="CENTER" spacing="8" styleClass="detail-avatar-block">
+                            <StackPane styleClass="detail-avatar">
+                                <Label fx:id="lblDetailInitials" text="NP" styleClass="detail-initials"/>
+                            </StackPane>
+                            <Label fx:id="lblDetailName"   text="Nuwan Perera" styleClass="detail-name"/>
+                            <Label fx:id="lblDetailId"     text="PID-00042"    styleClass="detail-pid"/>
+                            <Label fx:id="lblDetailStatus" text="● Active"     styleClass="detail-status-active"/>
+                        </VBox>
+
+                        <Separator styleClass="detail-sep"/>
+
+                        <!-- Contact info -->
+                        <VBox spacing="10" styleClass="detail-section">
+                            <Label text="CONTACT INFORMATION" styleClass="detail-section-title"/>
+
+                            <HBox spacing="8" alignment="TOP_LEFT" styleClass="detail-field">
+                                <Label text="✉" styleClass="field-icon"/>
+                                <VBox spacing="1">
+                                    <Label text="Email" styleClass="field-label"/>
+                                    <Label fx:id="lblDetailEmail" text="nuwan@email.com" styleClass="field-value"/>
+                                </VBox>
+                            </HBox>
+
+                            <HBox spacing="8" alignment="TOP_LEFT" styleClass="detail-field">
+                                <Label text="☏" styleClass="field-icon"/>
+                                <VBox spacing="1">
+                                    <Label text="Phone" styleClass="field-label"/>
+                                    <Label fx:id="lblDetailPhone" text="+94761234567" styleClass="field-value"/>
+                                </VBox>
+                            </HBox>
+
+                            <HBox spacing="8" alignment="TOP_LEFT" styleClass="detail-field">
+                                <Label text="⌂" styleClass="field-icon"/>
+                                <VBox spacing="1">
+                                    <Label text="Address" styleClass="field-label"/>
+                                    <Label fx:id="lblDetailAddress"
+                                           text="123 Kandy Road, Peradeniya"
+                                           styleClass="field-value" wrapText="true"/>
+                                </VBox>
+                            </HBox>
+
+                            <HBox spacing="8" alignment="TOP_LEFT" styleClass="detail-field">
+                                <Label text="⊞" styleClass="field-icon"/>
+                                <VBox spacing="1">
+                                    <Label text="NIC Number" styleClass="field-label"/>
+                                    <Label fx:id="lblDetailNic" text="901234567V" styleClass="field-value"/>
+                                </VBox>
+                            </HBox>
+                        </VBox>
+
+                        <Separator styleClass="detail-sep"/>
+
+                        <!-- Medical info -->
+                        <VBox spacing="10" styleClass="detail-section">
+                            <Label text="MEDICAL INFORMATION" styleClass="detail-section-title"/>
+
+                            <HBox spacing="8" alignment="TOP_LEFT" styleClass="detail-field">
+                                <Label text="♥" styleClass="field-icon"/>
+                                <VBox spacing="1" HBox.hgrow="ALWAYS">
+                                    <Label text="Medical History" styleClass="field-label"/>
+                                    <Label fx:id="lblDetailMedHistory"
+                                           text="Mild anxiety and stress-related issues."
+                                           styleClass="field-value" wrapText="true"/>
+                                </VBox>
+                            </HBox>
+
+                            <HBox spacing="8" alignment="TOP_LEFT" styleClass="detail-field">
+                                <Label text="◈" styleClass="field-icon"/>
+                                <VBox spacing="1">
+                                    <Label text="Emergency Contact" styleClass="field-label"/>
+                                    <Label fx:id="lblDetailEmergency"
+                                           text="Kamani Perera · +94712345678"
+                                           styleClass="field-value"/>
+                                </VBox>
+                            </HBox>
+                        </VBox>
+
+                        <Separator styleClass="detail-sep"/>
+
+                        <!-- Enrolled programs -->
+                        <VBox spacing="10" styleClass="detail-section">
+                            <Label text="ENROLLED PROGRAMS" styleClass="detail-section-title"/>
+                            <VBox fx:id="programTagsBox" spacing="6" styleClass="program-tags"/>
+                        </VBox>
+
+                        <Separator styleClass="detail-sep"/>
+
+                        <!-- Detail action buttons -->
+                        <VBox spacing="8" styleClass="detail-actions">
+                            <Button text="✎   Edit Patient"      styleClass="btn-primary"   maxWidth="Infinity" />
+                            <Button text="◉   Enroll in Program" styleClass="btn-secondary" maxWidth="Infinity" />
+                            <Button text="◷   View Sessions"     styleClass="btn-ghost"     maxWidth="Infinity" />
+                            <Button text="✕   Discharge Patient" styleClass="btn-danger"    maxWidth="Infinity" />
+                        </VBox>
+
+                    </VBox>
+                </ScrollPane>
+
+            </VBox>
+        </right>
+
+    </BorderPane>
+
+</AnchorPane>
