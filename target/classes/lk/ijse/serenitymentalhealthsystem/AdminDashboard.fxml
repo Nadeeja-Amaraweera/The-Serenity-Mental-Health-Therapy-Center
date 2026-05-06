@@ -49,45 +49,27 @@
             <VBox spacing="8">
                 <Label styleClass="menu-category" text="MAIN MENU" />
 
-                <Button prefHeight="26.0" prefWidth="239.0" styleClass="sidebar-button-active" text="📊 Dashboard">
-                    <graphic><Label styleClass="button-icon" text="📊" /></graphic>
-                </Button>
+                <Button prefHeight="26.0" prefWidth="239.0" styleClass="sidebar-button-active" text="Dashboard" />
 
-                <Button prefHeight="26.0" prefWidth="246.0" styleClass="sidebar-button" text="👥 Patient Management">
-                    <graphic><Label styleClass="button-icon" text="👥" /></graphic>
-                </Button>
+                <Button prefHeight="26.0" prefWidth="246.0" styleClass="sidebar-button" text="Patient Management" />
 
-                <Button prefHeight="26.0" prefWidth="246.0" styleClass="sidebar-button" text="👨‍⚕️ Therapist Management">
-                    <graphic><Label styleClass="button-icon" text="👨‍⚕️" /></graphic>
-                </Button>
+                <Button prefHeight="26.0" prefWidth="246.0" styleClass="sidebar-button" text="Therapist Management" />
 
-                <Button prefHeight="26.0" prefWidth="268.0" styleClass="sidebar-button" text="📚 Program Management">
-                    <graphic><Label styleClass="button-icon" text="📚" /></graphic>
-                </Button>
+                <Button prefHeight="26.0" prefWidth="268.0" styleClass="sidebar-button" text="Program Management" />
 
-                <Button prefHeight="26.0" prefWidth="248.0" styleClass="sidebar-button" text="📅 Session Scheduling">
-                    <graphic><Label styleClass="button-icon" text="📅" /></graphic>
-                </Button>
+                <Button prefHeight="26.0" prefWidth="248.0" styleClass="sidebar-button" text="Session Scheduling" />
 
-                <Button prefHeight="26.0" prefWidth="242.0" styleClass="sidebar-button" text="💰 Payment Management">
-                    <graphic><Label styleClass="button-icon" text="💰" /></graphic>
-                </Button>
+                <Button prefHeight="26.0" prefWidth="242.0" styleClass="sidebar-button" text="Payment Management" />
 
-                <Button prefHeight="26.0" prefWidth="246.0" styleClass="sidebar-button" text="📈 Reports  Analytics">
-                    <graphic><Label styleClass="button-icon" text="📈" /></graphic>
-                </Button>
+                <Button prefHeight="26.0" prefWidth="246.0" styleClass="sidebar-button" text="Reports  Analytics" />
 
                 <Separator styleClass="sidebar-separator" />
 
                 <Label styleClass="menu-category" text="ACCOUNT" />
 
-                <Button prefHeight="26.0" prefWidth="238.0" styleClass="sidebar-button" text="👤 My Profile">
-                    <graphic><Label styleClass="button-icon" text="👤" /></graphic>
-                </Button>
+                <Button prefHeight="26.0" prefWidth="238.0" styleClass="sidebar-button" text="My Profile" />
 
-                <Button prefHeight="26.0" prefWidth="244.0" styleClass="sidebar-button" text="🔑 Change Password">
-                    <graphic><Label styleClass="button-icon" text="🔑" /></graphic>
-                </Button>
+                <Button prefHeight="26.0" prefWidth="244.0" styleClass="sidebar-button" text="Change Password" />
             </VBox>
         </VBox>
     </left>
@@ -153,11 +135,11 @@
                         </HBox>
                         <TableView fx:id="recentPatientsTable" prefHeight="300" styleClass="data-table">
                             <columns>
-                                <TableColumn prefWidth="100" text="Patient ID" />
-                                <TableColumn prefWidth="150" text="Name" />
-                                <TableColumn prefWidth="150" text="Program" />
-                                <TableColumn prefWidth="120" text="Date" />
-                                <TableColumn prefWidth="80" text="Status" />
+                                <TableColumn maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="100.0" text="Patient ID" />
+                                <TableColumn maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="150.0" text="Name" />
+                                <TableColumn maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="150.0" text="Program" />
+                                <TableColumn maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="125.0" text="Date" />
+                                <TableColumn maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="76.0" text="Status" />
                             </columns>
                         </TableView>
                     </VBox>

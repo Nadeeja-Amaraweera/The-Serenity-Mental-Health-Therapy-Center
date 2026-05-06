@@ -5,6 +5,7 @@ import lk.ijse.serenitymentalhealthsystem.dao.DAOFactory;
 import lk.ijse.serenitymentalhealthsystem.dao.DAOTypes;
 import lk.ijse.serenitymentalhealthsystem.dao.custom.UserDAO;
 import lk.ijse.serenitymentalhealthsystem.dto.UserDTO;
+import lk.ijse.serenitymentalhealthsystem.entity.Role;
 import lk.ijse.serenitymentalhealthsystem.entity.User;
 
 public class UserBOImpl implements UserBO {
@@ -22,4 +23,19 @@ public class UserBOImpl implements UserBO {
 
         return userDAO.save(newUser);
     }
+
+    @Override
+    public UserDTO login(String username, String password) throws Exception {
+        User user = userDAO.findByUsername(username, password);
+
+        if (user == null) return null;
+
+        return new UserDTO(
+                null,
+                user.getUsername(),
+                user.getPassword(),
+                user.getRole()
+        );
+    }
+
 }

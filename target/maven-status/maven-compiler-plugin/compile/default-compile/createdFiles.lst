@@ -18,5 +18,6 @@ lk/ijse/serenitymentalhealthsystem/entity/User.class
 lk/ijse/serenitymentalhealthsystem/bo/custom/UserBO.class
 lk/ijse/serenitymentalhealthsystem/config/FactoryConfiguration.class
 lk/ijse/serenitymentalhealthsystem/bo/custom/impl/UserBOImpl.class
+lk/ijse/serenitymentalhealthsystem/controller/LoginController$1.class
 lk/ijse/serenitymentalhealthsystem/controller/LoginController.class
 lk/ijse/serenitymentalhealthsystem/dto/UserDTO.class

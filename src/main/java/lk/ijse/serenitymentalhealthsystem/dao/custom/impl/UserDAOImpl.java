@@ -6,6 +6,7 @@ import lk.ijse.serenitymentalhealthsystem.entity.Role;
 import lk.ijse.serenitymentalhealthsystem.entity.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import java.sql.SQLException;
 
@@ -30,7 +31,22 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public boolean login(String username, String password, Role role) throws SQLException {
-        return false;
+    public User findByUsername(String username, String password) throws SQLException {
+        Session session = FactoryConfiguration
+                .getInstance()
+                .getSession();
+
+        try {
+            String hql = "FROM User WHERE username = :username AND password = :password";
+
+            Query<User> query = session.createQuery(hql, User.class);
+            query.setParameter("username", username);
+            query.setParameter("password", password);
+
+            return query.uniqueResult(); // returns null if not found
+
+        } finally {
+            session.close();
+        }
     }
 }

@@ -8,5 +8,6 @@ import java.sql.SQLException;
 
 
 public interface UserDAO extends CrudDAO<User> {
-    boolean login(String username, String password, Role role) throws SQLException;
+
+    User findByUsername(String username, String password) throws SQLException;
 }
