@@ -9,10 +9,16 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class UserDAOImpl implements UserDAO {
 
     private final FactoryConfiguration factoryConfiguration = FactoryConfiguration.getInstance();
+
+    @Override
+    public List<User> getAll() throws Exception {
+        return List.of();
+    }
 
     @Override
     public boolean save(User user) throws Exception, SQLException {
@@ -28,6 +34,16 @@ public class UserDAOImpl implements UserDAO {
         } finally {
             session.close();
         }
+    }
+
+    @Override
+    public boolean update(User entity) throws Exception {
+        return false;
+    }
+
+    @Override
+    public boolean delete(String id) throws Exception {
+        return false;
     }
 
     @Override
