@@ -45,23 +45,23 @@
             <VBox spacing="8">
                 <Label styleClass="menu-category" text="MAIN MENU" />
 
-                <Button fx:id="dashboardBtn" onAction="#showDashboard" prefHeight="26.0" prefWidth="259.0" styleClass="sidebar-button-active" text="📊 Dashboard">
+                <Button fx:id="dashboardBtn"  prefHeight="26.0" prefWidth="259.0" styleClass="sidebar-button-active" text="📊 Dashboard">
                     <graphic><Label styleClass="button-icon" text="📊" /></graphic>
                 </Button>
 
-                <Button fx:id="patientManagementBtn" onAction="#loadPatientManagementPage" prefHeight="26.0" prefWidth="242.0" styleClass="sidebar-button" text="👥 Patient Management">
+                <Button fx:id="patientManagementBtn"  prefHeight="26.0" prefWidth="242.0" styleClass="sidebar-button" text="👥 Patient Management">
                     <graphic><Label styleClass="button-icon" text="👥" /></graphic>
                 </Button>
 
-                <Button fx:id="sessionSchedulingBtn" onAction="#scheduleSessionPage" prefHeight="26.0" prefWidth="249.0" styleClass="sidebar-button" text="📅 Session Scheduling">
+                <Button fx:id="sessionSchedulingBtn"  prefHeight="26.0" prefWidth="249.0" styleClass="sidebar-button" text="📅 Session Scheduling">
                     <graphic><Label styleClass="button-icon" text="📅" /></graphic>
                 </Button>
 
-                <Button fx:id="paymentProcessingBtn" onAction="#paymentProcessingPage" prefHeight="26.0" prefWidth="248.0" styleClass="sidebar-button" text="💰 Payment Processing">
+                <Button fx:id="paymentProcessingBtn"  prefHeight="26.0" prefWidth="248.0" styleClass="sidebar-button" text="💰 Payment Processing">
                     <graphic><Label styleClass="button-icon" text="💰" /></graphic>
                 </Button>
 
-                <Button fx:id="patientHistoryBtn" onAction="#patientHistoryPage" prefHeight="26.0" prefWidth="247.0" styleClass="sidebar-button" text="📋 Patient History">
+                <Button fx:id="patientHistoryBtn"  prefHeight="26.0" prefWidth="247.0" styleClass="sidebar-button" text="📋 Patient History">
                     <graphic><Label styleClass="button-icon" text="📋" /></graphic>
                 </Button>
 
@@ -69,11 +69,11 @@
 
                 <Label styleClass="menu-category" text="ACCOUNT" />
 
-                <Button fx:id="myProfileBtn" onAction="#myProfilePage" prefHeight="26.0" prefWidth="306.0" styleClass="sidebar-button" text="👤 My Profile">
+                <Button fx:id="myProfileBtn"  prefHeight="26.0" prefWidth="306.0" styleClass="sidebar-button" text="👤 My Profile">
                     <graphic><Label styleClass="button-icon" text="👤" /></graphic>
                 </Button>
 
-                <Button fx:id="changePasswordBtn" onAction="#changePasswordPage" prefHeight="26.0" prefWidth="270.0" styleClass="sidebar-button" text="🔑 Change Password">
+                <Button fx:id="changePasswordBtn" prefHeight="26.0" prefWidth="270.0" styleClass="sidebar-button" text="🔑 Change Password">
                     <graphic><Label styleClass="button-icon" text="🔑" /></graphic>
                 </Button>
             </VBox>

@@ -79,7 +79,7 @@ public class LoginController implements Initializable {
 
     private void loadDashboard(String fxml) throws Exception {
         Parent root = FXMLLoader.load(
-                getClass().getResource("/lk/ijse/serenitymentalhealthsystem/" + fxml)
+                getClass().getResource("/view/" + fxml)
         );
 
         Stage stage = (Stage) usernameField.getScene().getWindow();
