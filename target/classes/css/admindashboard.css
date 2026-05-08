@@ -7,8 +7,8 @@
     -clr-bg-600: #313b4d;
     -clr-bg-500: #3b475c;
 
-    -clr-border: #465365;
-    -clr-border-lt: #5d6b7d;
+    -clr-border: #536375;
+    -clr-border-lt: #6b7a8c;
 
     -clr-teal: #2dd4bf;
     -clr-teal-dk: #14b8a6;
@@ -20,8 +20,8 @@
     -clr-red: #ff7b72;
 
     -clr-text: #e6edf3;
-    -clr-text-sec: #a2adba;
-    -clr-text-muted: #7f8b9a;
+    -clr-text-sec: #b8c4d1;
+    -clr-text-muted: #8fa0ac;
 
     -fx-font-family: "Segoe UI";
     -fx-background-color: -clr-bg-800;
@@ -536,7 +536,9 @@
 
 .form-field:focused,
 .text-field:focused {
-    -fx-border-color: -clr-teal;
+    -fx-border-color: #7a8a9a;
+    -fx-border-width: 2;
+    -fx-background-color: #2a3441;
 }
 
 .combo-box {
@@ -547,7 +549,9 @@
 }
 
 .combo-box:focused {
-    -fx-border-color: -clr-teal;
+    -fx-border-color: #7a8a9a;
+    -fx-border-width: 2;
+    -fx-background-color: #2a3441;
 }
 
 .combo-box .list-cell {
@@ -578,7 +582,9 @@
 }
 
 .date-picker:focused {
-    -fx-border-color: -clr-teal;
+    -fx-border-color: #7a8a9a;
+    -fx-border-width: 2;
+    -fx-background-color: #2a3441;
 }
 
 .date-picker .text-field {

@@ -17,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 
 /**
@@ -24,7 +25,7 @@ import javafx.scene.layout.StackPane;
  *
  * @author nadeeja
  */
-public class AdminDashboardController implements Initializable {
+public class AdminDashboardController implements Initializable , DashboardControl {
 
     @FXML
     private StackPane contentArea;
@@ -42,26 +43,32 @@ public class AdminDashboardController implements Initializable {
         System.out.println("Dashboard button clicked");
         URL url = getClass().getResource("/view/AdminDashboard.fxml");
         System.out.println(url);
-        loadUI("/view/AdminDashboard.fxml");
+        loadUIInStackPane("/view/AdminDashboard.fxml", contentArea);
         setActiveButton((Button) event.getSource());
     }
 
     @FXML
     private void loadPatientManagementPage(ActionEvent event) {
         System.out.println("Patient Management button clicked");
-        loadUI("/view/PatientManagement.fxml");
+        loadUIInStackPane("/view/PatientManagement.fxml", contentArea);
         setActiveButton((Button) event.getSource());
     }
 
     @FXML
     private void therapistManagementPage(ActionEvent event) {
-        loadUI("/view/TherapistManagement.fxml");
+        loadUIInStackPane("/view/TherapistManagement.fxml", contentArea);
         setActiveButton((Button) event.getSource());
     }
 
     @FXML
     private void programManagementPage(ActionEvent event) {
-        loadUI("/view/ProgramManagement.fxml");
+        loadUIInStackPane("/view/ProgramManagement.fxml", contentArea);
+        setActiveButton((Button) event.getSource());
+    }
+
+    @FXML
+    private void therapyProgrammePage(ActionEvent event) {
+        loadUIInStackPane("/view/TherapyProgrammes.fxml", contentArea);
         setActiveButton((Button) event.getSource());
     }
 
@@ -85,14 +92,20 @@ public class AdminDashboardController implements Initializable {
         activeBtn.getStyleClass().add("sidebar-button-active");
     }
 
-    //load UIs
-    private void loadUI(String path){
+    @Override
+    public void loadUIInStackPane(String path, StackPane area) {
         try {
-        Parent root = FXMLLoader.load(getClass().getResource(path));
-        contentArea.getChildren().clear();
-        contentArea.getChildren().add(root);
+            Parent root = FXMLLoader.load(getClass().getResource(path));
+            area.getChildren().clear();
+            area.getChildren().add(root);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Load UI into a StackPane
+     */
+
+
 }

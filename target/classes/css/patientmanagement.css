@@ -5,8 +5,8 @@
     -clr-bg-600: #313b4d;
     -clr-bg-500: #3b475c;
 
-    -clr-border: #465365;
-    -clr-border-lt: #5d6b7d;
+    -clr-border: #536375;
+    -clr-border-lt: #6b7a8c;
 
     -clr-teal: #2dd4bf;
     -clr-teal-dk: #14b8a6;
@@ -17,8 +17,8 @@
     -clr-sky: #58a6ff;
 
     -clr-text: #e6edf3;
-    -clr-text-sec: #a2adba;
-    -clr-text-muted: #7f8b9a;
+    -clr-text-sec: #b8c4d1;
+    -clr-text-muted: #8fa0ac;
 
     -fx-font-family: "Segoe UI";
     -fx-background-color: -clr-bg-800;
@@ -108,7 +108,9 @@
 }
 
 .text-field:focused {
-    -fx-border-color: -clr-teal;
+    -fx-border-color: #7a8a9a;
+    -fx-border-width: 2;
+    -fx-background-color: #2a3441;
 }
 
 /* COMBO */
@@ -241,7 +243,9 @@
 }
 
 .date-picker:focused {
-    -fx-border-color: -clr-teal;
+    -fx-border-color: #7a8a9a;
+    -fx-border-width: 2;
+    -fx-background-color: #2a3441;
 }
 
 /* ================= COMBO POPUP ================= */
@@ -445,4 +449,22 @@
 .record-tabs .tab-content-area {
     -fx-background-color: -clr-bg-700;
     -fx-border-color: -clr-border;
+}
+
+/* ================= STACKPANE & OVERLAY LAYER ================= */
+.content-container {
+    -fx-background-color: -clr-bg-800;
+}
+
+.overlay-layer {
+    -fx-background-color: rgba(0, 0, 0, 0.4);
+    -fx-padding: 20;
+    -fx-alignment: CENTER;
+}
+
+.overlay-layer > * {
+    -fx-background-color: -clr-bg-700;
+    -fx-border-color: -clr-border;
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
 }
