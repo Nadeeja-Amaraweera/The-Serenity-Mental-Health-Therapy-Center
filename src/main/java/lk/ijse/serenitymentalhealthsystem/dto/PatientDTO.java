@@ -1,34 +1,22 @@
-package lk.ijse.serenitymentalhealthsystem.entity;
+package lk.ijse.serenitymentalhealthsystem.dto;
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+
+
+import lombok.*;
 
 import java.time.LocalDate;
-
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-@Entity
-@Table(name = "patients")
-public class Patient {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+@Getter
+@Setter
+@ToString
+public class PatientDTO {
     private Long patientId;
 
     // Personal Information
-    @Column(nullable = false)
     private String firstName;
-
-    @Column(nullable = false)
     private String lastName;
-
-    @Column(nullable = false)
     private LocalDate dateOfBirth;
-
-    @Column(nullable = false)
     private String gender;
 
     // Contact Information
@@ -42,7 +30,6 @@ public class Patient {
     private String bloodType;
     private String allergies;
 
-    @Column(length = 2000)
     private String medicalHistory;
 
     // Therapy Information
@@ -50,12 +37,10 @@ public class Patient {
     private String therapyType;
     private String status;
 
-    @Column(length = 1500)
     private String notes;
 
     // Emergency Contact
     private String emergencyName;
     private String emergencyPhone;
     private String relationship;
-
 }

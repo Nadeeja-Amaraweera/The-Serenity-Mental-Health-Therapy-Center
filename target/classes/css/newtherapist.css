@@ -146,6 +146,16 @@
     -fx-font-weight: bold;
     -fx-font-size: 14px;
     -fx-padding: 8 12;
+    -fx-cursor: hand;
+}
+
+.btn-close:hover {
+    -fx-background-color: rgba(255,123,114,0.24);
+}
+
+.btn-close:pressed {
+    -fx-background-color: rgba(255,123,114,0.32);
+    -fx-translate-y: 1;
 }
 
 /* small helper classes */

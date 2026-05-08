@@ -28,7 +28,7 @@
             <!-- Header -->
             <HBox styleClass="form-header" alignment="CENTER_LEFT" spacing="12">
                 <VBox spacing="3" HBox.hgrow="ALWAYS">
-                    <Label text="Add New Patient" styleClass="form-title"/>
+                    <Label text="Add / Edit Patient" styleClass="form-title"/>
                     <Label text="Fill in patient details to create a new record" styleClass="form-subtitle"/>
                 </VBox>
                 <Button fx:id="btnClose" text="✕" styleClass="btn-close"/>
