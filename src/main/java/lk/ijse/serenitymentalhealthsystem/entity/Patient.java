@@ -32,30 +32,30 @@ public class Patient {
     private String gender;
 
     // Contact Information
-    private String email;
-    private String phone;
-    private String address;
-    private String city;
-    private String state;
-
-    // Medical Information
-    private String bloodType;
-    private String allergies;
-
-    @Column(length = 2000)
-    private String medicalHistory;
-
-    // Therapy Information
-    private String primaryConcern;
-    private String therapyType;
-    private String status;
-
-    @Column(length = 1500)
-    private String notes;
-
-    // Emergency Contact
-    private String emergencyName;
-    private String emergencyPhone;
-    private String relationship;
+//    private String email;
+//    private String phone;
+//    private String address;
+//    private String city;
+//    private String state;
+//
+//    // Medical Information
+//    private String bloodType;
+//    private String allergies;
+//
+//    @Column(length = 2000)
+//    private String medicalHistory;
+//
+//    // Therapy Information
+//    private String primaryConcern;
+//    private String therapyType;
+//    private String status;
+//
+//    @Column(length = 1500)
+//    private String notes;
+//
+//    // Emergency Contact
+//    private String emergencyName;
+//    private String emergencyPhone;
+//    private String relationship;
 
 }
