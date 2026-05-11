@@ -1,11 +1,16 @@
 package lk.ijse.serenitymentalhealthsystem.dao.custom.impl;
 
+import lk.ijse.serenitymentalhealthsystem.config.FactoryConfiguration;
 import lk.ijse.serenitymentalhealthsystem.dao.custom.PatientDAO;
 import lk.ijse.serenitymentalhealthsystem.entity.Patient;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.util.List;
 
 public class PatientDAOImpl implements PatientDAO {
+
+    private final FactoryConfiguration factoryConfiguration = FactoryConfiguration.getInstance();
     @Override
     public List<Patient> getAll() throws Exception {
         return List.of();
@@ -13,7 +18,21 @@ public class PatientDAOImpl implements PatientDAO {
 
     @Override
     public boolean save(Patient entity) throws Exception {
-        return false;
+        Session session = factoryConfiguration.getSession();
+        Transaction transaction = session.beginTransaction();
+
+        try {
+            session.persist(entity);
+            transaction.commit();
+            return true;
+        } catch (Exception e) {
+            transaction.rollback();
+            return false;
+        } finally {
+            session.close();
+        }
+
+
     }
 
     @Override

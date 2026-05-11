@@ -48,7 +48,7 @@ public class Patient {
 //    // Therapy Information
 //    private String primaryConcern;
 //    private String therapyType;
-//    private String status;
+    private String status;
 //
 //    @Column(length = 1500)
 //    private String notes;

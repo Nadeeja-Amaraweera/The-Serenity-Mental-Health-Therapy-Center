@@ -18,6 +18,8 @@ public class PatientDTO {
     private String lastName;
     private LocalDate dateOfBirth;
     private String gender;
+    private String phone;
+    private String status;
 
     // Contact Information
 //    private String email;

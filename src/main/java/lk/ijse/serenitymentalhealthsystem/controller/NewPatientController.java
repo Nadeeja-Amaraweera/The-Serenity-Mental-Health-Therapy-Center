@@ -5,10 +5,15 @@
 package lk.ijse.serenitymentalhealthsystem.controller;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import lk.ijse.serenitymentalhealthsystem.bo.BOFactory;
+import lk.ijse.serenitymentalhealthsystem.bo.BOTypes;
+import lk.ijse.serenitymentalhealthsystem.bo.custom.PatientBO;
+import lk.ijse.serenitymentalhealthsystem.dto.PatientDTO;
 
 /**
  * FXML Controller class for New Patient Registration
@@ -16,6 +21,8 @@ import javafx.scene.control.*;
  * @author nadeeja
  */
 public class NewPatientController implements Initializable {
+
+    private final PatientBO patientBO = BOFactory.getInstance().getBO(BOTypes.PATIENT);
 
     /* Personal Information Fields */
     @FXML
@@ -106,8 +113,34 @@ public class NewPatientController implements Initializable {
             return;
         }
 
+        String firstName = txtFirstName.getText();
+        String lastName = txtLastName.getText();
+        LocalDate dateOfBirth = dpDateOfBirth.getValue();
+        String gender = cmbGender.getValue();
+        String phone = txtPhone.getText();
+        String status = cmbStatus.getValue();
+
+        PatientDTO patientDTO =  new PatientDTO(
+                null,
+                firstName,
+                lastName,
+                dateOfBirth,
+                gender,
+                phone,
+                status
+        );
+
+        try {
+            boolean result = patientBO.savePatient(patientDTO);
+            if (result) {
+                showAlert(Alert.AlertType.INFORMATION, "Success", "Patient record saved successfully");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+
         // TODO: Implement patient save logic using BO/DAO
-        showAlert(Alert.AlertType.INFORMATION, "Success", "Patient record saved successfully");
 
         // Clear form after successful save
         clearForm();
@@ -133,12 +166,6 @@ public class NewPatientController implements Initializable {
         }
     }
 
-    /**
-     * Set close callback to be invoked when close button is clicked
-     * Called by parent controller
-     *
-     * @param callback The callback to execute on close
-     */
 
     public void setCloseCallback(Runnable callback) {
         this.closeCallback = callback;
