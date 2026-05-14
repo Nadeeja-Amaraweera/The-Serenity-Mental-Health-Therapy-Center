@@ -144,9 +144,18 @@
     -fx-background-color: -clr-bg-700;
 }
 
+/* Ensure JavaFX header/filler regions do not fall back to white */
+.table-view .column-header,
+.table-view .filler,
+.table-view .show-hide-columns-button {
+    -fx-background-color: -clr-bg-700;
+    -fx-border-color: transparent transparent -clr-border transparent;
+}
+
 .table-view .column-header .label {
-    -fx-text-fill: -clr-text-sec;
+    -fx-text-fill: -clr-text;
     -fx-font-size: 10px;
+    -fx-font-weight: bold;
 }
 
 /* rows */
