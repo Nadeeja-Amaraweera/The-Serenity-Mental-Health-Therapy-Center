@@ -13,7 +13,12 @@ public class PatientDAOImpl implements PatientDAO {
     private final FactoryConfiguration factoryConfiguration = FactoryConfiguration.getInstance();
     @Override
     public List<Patient> getAll() throws Exception {
-        return List.of();
+        Session session = factoryConfiguration.getSession();
+
+        List<Patient> list = session.createQuery("from Patient", Patient.class).list();
+
+        session.close();
+        return list;
     }
 
     @Override

@@ -24,6 +24,7 @@ lk/ijse/serenitymentalhealthsystem/controller/DashboardControl.class
 lk/ijse/serenitymentalhealthsystem/controller/AdminDashboardController.class
 lk/ijse/serenitymentalhealthsystem/controller/TherapyProgrammesController.class
 lk/ijse/serenitymentalhealthsystem/bo/BOTypes.class
+lk/ijse/serenitymentalhealthsystem/tm/PatientTM.class
 lk/ijse/serenitymentalhealthsystem/bo/BOFactory.class
 lk/ijse/serenitymentalhealthsystem/controller/TherapistManagementController.class
 lk/ijse/serenitymentalhealthsystem/bo/custom/PatientBO.class

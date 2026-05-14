@@ -120,13 +120,13 @@
                                 <cellValueFactory><PropertyValueFactory property="email" /></cellValueFactory>
                             </TableColumn>
 
-                            <TableColumn fx:id="colPrograms" minWidth="100" prefWidth="115" text="PROGRAMS">
-                                <cellValueFactory><PropertyValueFactory property="programCount" /></cellValueFactory>
-                            </TableColumn>
+<!--                            <TableColumn fx:id="colPrograms" minWidth="100" prefWidth="115" text="PROGRAMS">-->
+<!--                                <cellValueFactory><PropertyValueFactory property="programCount" /></cellValueFactory>-->
+<!--                            </TableColumn>-->
 
-                            <TableColumn fx:id="colRegistered" minWidth="105" prefWidth="120" text="REGISTERED">
-                                <cellValueFactory><PropertyValueFactory property="registrationDate" /></cellValueFactory>
-                            </TableColumn>
+<!--                            <TableColumn fx:id="colRegistered" minWidth="105" prefWidth="120" text="REGISTERED">-->
+<!--                                <cellValueFactory><PropertyValueFactory property="registrationDate" /></cellValueFactory>-->
+<!--                            </TableColumn>-->
 
                             <TableColumn fx:id="colStatus" maxWidth="105" minWidth="90" text="STATUS">
                                 <cellValueFactory><PropertyValueFactory property="status" /></cellValueFactory>

@@ -18,31 +18,29 @@ public class PatientDTO {
     private String lastName;
     private LocalDate dateOfBirth;
     private String gender;
-    private String phone;
-    private String status;
 
     // Contact Information
-//    private String email;
-//    private String phone;
-//    private String address;
-//    private String city;
-//    private String state;
-//
-//    // Medical Information
-//    private String bloodType;
-//    private String allergies;
-//
-//    private String medicalHistory;
-//
-//    // Therapy Information
-//    private String primaryConcern;
-//    private String therapyType;
-//    private String status;
-//
-//    private String notes;
-//
-//    // Emergency Contact
-//    private String emergencyName;
-//    private String emergencyPhone;
-//    private String relationship;
+    private String email;
+    private String phone;
+    private String address;
+    private String city;
+    private String state;
+
+    // Medical Information
+    private String bloodType;
+    private String allergies;
+
+    private String medicalHistory;
+
+    // Therapy Information
+    private String primaryConcern;
+    private String therapyType;
+    private String status;
+
+    private String notes;
+
+    // Emergency Contact
+    private String emergencyName;
+    private String emergencyPhone;
+    private String relationship;
 }

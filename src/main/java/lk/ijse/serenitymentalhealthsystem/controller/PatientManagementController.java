@@ -6,15 +6,29 @@ package lk.ijse.serenitymentalhealthsystem.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.Period;
+import java.util.List;
 import java.util.ResourceBundle;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
+import lk.ijse.serenitymentalhealthsystem.bo.BOFactory;
+import lk.ijse.serenitymentalhealthsystem.bo.BOTypes;
+import lk.ijse.serenitymentalhealthsystem.bo.custom.PatientBO;
+import lk.ijse.serenitymentalhealthsystem.dto.PatientDTO;
+import lk.ijse.serenitymentalhealthsystem.entity.Patient;
+import lk.ijse.serenitymentalhealthsystem.tm.PatientTM;
 
 /**
  * FXML Controller class for Patient Management
@@ -46,12 +60,97 @@ public class PatientManagementController implements Initializable, DashboardCont
     /**
      * Initializes the controller class.
      */
+
+    @FXML
+    private TableView<PatientTM> tblPatients;
+
+    @FXML
+    private TableColumn<PatientTM, Long> colId;
+
+    @FXML
+    private TableColumn<PatientTM, String> colName;
+
+    @FXML
+    private TableColumn<PatientTM, Integer> colAge;
+
+    @FXML
+    private TableColumn<PatientTM, String> colGender;
+
+    @FXML
+    private TableColumn<PatientTM, String> colContact;
+
+    @FXML
+    private TableColumn<PatientTM, String> colEmail;
+
+//    @FXML
+//    private TableColumn<PatientTM, Integer> colPrograms;
+//
+//    @FXML
+//    private TableColumn<PatientTM, String> colRegistered;
+
+    @FXML
+    private TableColumn<PatientTM, String> colStatus;
+
+    @FXML
+    private TableColumn<PatientTM, Button> colActions;
+
+    private final PatientBO patientBO = (BOFactory.getInstance().getBO(BOTypes.PATIENT));
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        colId.setCellValueFactory(new PropertyValueFactory<>("patientId"));
+        colName.setCellValueFactory(new PropertyValueFactory<>("fullName"));
+        colAge.setCellValueFactory(new PropertyValueFactory<>("age"));
+        colGender.setCellValueFactory(new PropertyValueFactory<>("gender"));
+        colContact.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+//        colPrograms.setCellValueFactory(new PropertyValueFactory<>("programCount"));
+//        colRegistered.setCellValueFactory(new PropertyValueFactory<>("registrationDate"));
+        colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+        colActions.setCellValueFactory(new PropertyValueFactory<>("actions"));
+
+        loadPatients();
+
         // Initialize overlay as hidden
         if (overlayStackPane != null) {
             overlayStackPane.setVisible(false);
             overlayStackPane.setManaged(false);
+        }
+    }
+
+    private void loadPatients() {
+        try {
+            List<PatientDTO> list = patientBO.getAllPatients();
+            ObservableList<PatientTM> observableList = FXCollections.observableArrayList();
+            for (PatientDTO patientDTO : list) {
+                Button btnView = new Button("View");
+                btnView.setOnAction(event -> {
+                    // Handle view patient details
+                    System.out.println("View details for patient ID: " + patientDTO.getPatientId());
+                    // You can load a detailed view in the overlay here
+                    loadViewInOverlay("/view/PatientDetails.fxml");
+                });
+
+                int age = Period.between(patientDTO.getDateOfBirth(), java.time.LocalDate.now()).getYears();
+
+                observableList.add(new PatientTM(
+                        patientDTO.getPatientId(),
+                        patientDTO.getFirstName()+ " " +patientDTO.getLastName(),
+                        age,
+                        patientDTO.getGender(),
+                        patientDTO.getPhone(),
+                        patientDTO.getEmail(),
+                        patientDTO.getStatus(),
+                        btnView
+
+                ));
+            }
+
+            tblPatients.setItems(observableList);
+
+        } catch (Exception e) {
+            System.err.println("Error loading patients: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 

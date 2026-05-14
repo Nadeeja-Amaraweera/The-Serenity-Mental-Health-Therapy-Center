@@ -117,17 +117,59 @@ public class NewPatientController implements Initializable {
         String lastName = txtLastName.getText();
         LocalDate dateOfBirth = dpDateOfBirth.getValue();
         String gender = cmbGender.getValue();
-        String phone = txtPhone.getText();
-        String status = cmbStatus.getValue();
 
-        PatientDTO patientDTO =  new PatientDTO(
+        /* Contact Information */
+        String email = txtEmail.getText();
+        String phone = txtPhone.getText();
+        String address = txtAddress.getText();
+        String city = txtCity.getText();
+        String state = txtState.getText();
+
+        /* Medical Information */
+        String bloodType = cmbBloodType.getValue();
+        String allergies = txtAllergies.getText();
+        String medicalHistory = taMedicalHistory.getText();
+
+        /* Therapy Information */
+        String primaryConcern = txtPrimaryConcern.getText();
+        String therapyType = cmbTherapyType.getValue();
+        String status = cmbStatus.getValue();
+        String notes = taNotes.getText();
+
+        /* Emergency Contact */
+        String emergencyName = txtEmergencyName.getText();
+        String emergencyPhone = txtEmergencyPhone.getText();
+        String relationship = txtRelationship.getText();
+
+        PatientDTO patientDTO = new PatientDTO(
                 null,
                 firstName,
                 lastName,
                 dateOfBirth,
                 gender,
+
+                // Contact Information
+                email,
                 phone,
-                status
+                address,
+                city,
+                state,
+
+                // Medical Information
+                bloodType,
+                allergies,
+                medicalHistory,
+
+                // Therapy Information
+                primaryConcern,
+                therapyType,
+                status,
+                notes,
+
+                // Emergency Contact
+                emergencyName,
+                emergencyPhone,
+                relationship
         );
 
         try {
