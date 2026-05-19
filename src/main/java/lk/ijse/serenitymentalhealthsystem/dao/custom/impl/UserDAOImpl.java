@@ -42,7 +42,7 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public boolean delete(Long id) throws Exception {
+    public boolean delete(String id) throws Exception {
         return false;
     }
 

@@ -17,5 +17,5 @@ public interface TherapyProgramBO extends SuperBO {
 
      boolean updateProgram(TherapyProgramDTO therapyProgramDTO) throws Exception;
 
-     boolean deleteProgram(Long id) throws Exception;
+     boolean deleteProgram(String id) throws Exception;
 }

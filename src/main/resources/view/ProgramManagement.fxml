@@ -240,10 +240,6 @@
                                                 <cellValueFactory><PropertyValueFactory property="status" /></cellValueFactory>
                                             </TableColumn>
 
-                                            <TableColumn fx:id="colActions" maxWidth="128" minWidth="115" sortable="false" text="ACTIONS">
-                                                <cellValueFactory><PropertyValueFactory property="actions" /></cellValueFactory>
-                                            </TableColumn>
-
                                         </columns>
 
                                         <placeholder>

@@ -23,6 +23,7 @@
 
     <stylesheets>
         <URL value="@/css/therapistmanagement.css" />
+        <URL value="@/css/patientmanagement.css" />
     </stylesheets>
 
     <!-- ╔══════════════════════════════════════════════════════════════════╗
@@ -91,24 +92,20 @@
                         <Button fx:id="btnAddTherapist" onAction="#AddNewTherapist" styleClass="btn-primary" text="+  Add Therapist" />
                     </HBox>
 
-                    <!-- Therapist table -->
+                    <!-- Therapist table (styled like Patient table) -->
                     <StackPane styleClass="table-wrapper" VBox.vgrow="ALWAYS">
-                        <TableView fx:id="tblTherapists" styleClass="therapist-table">
+                        <TableView fx:id="tblTherapists" styleClass="patient-table">
                             <columns>
 
                                 <TableColumn fx:id="colId" maxWidth="85" minWidth="75" text="ID">
                                     <cellValueFactory><PropertyValueFactory property="therapistId" /></cellValueFactory>
                                 </TableColumn>
 
-                                <TableColumn fx:id="colName" minWidth="150" prefWidth="180" text="NAME">
+                                <TableColumn fx:id="colName" minWidth="170" prefWidth="195" text="NAME">
                                     <cellValueFactory><PropertyValueFactory property="fullName" /></cellValueFactory>
                                 </TableColumn>
 
-                                <TableColumn fx:id="colPhone" minWidth="130" prefWidth="150" text="PHONE">
-                                    <cellValueFactory><PropertyValueFactory property="phone" /></cellValueFactory>
-                                </TableColumn>
-
-                                <TableColumn fx:id="colSpecialization" minWidth="140" prefWidth="170" text="SPECIALIZATION">
+                                <TableColumn fx:id="colSpecialization" minWidth="150" prefWidth="170" text="SPECIALIZATION">
                                     <cellValueFactory><PropertyValueFactory property="specialization" /></cellValueFactory>
                                 </TableColumn>
 
@@ -116,11 +113,15 @@
                                     <cellValueFactory><PropertyValueFactory property="assignedProgram" /></cellValueFactory>
                                 </TableColumn>
 
+                                <TableColumn fx:id="colPhone" minWidth="130" prefWidth="150" text="PHONE">
+                                    <cellValueFactory><PropertyValueFactory property="phone" /></cellValueFactory>
+                                </TableColumn>
+
                                 <TableColumn fx:id="colAvailability" minWidth="110" prefWidth="130" text="AVAILABILITY">
                                     <cellValueFactory><PropertyValueFactory property="availability" /></cellValueFactory>
                                 </TableColumn>
 
-                                <TableColumn fx:id="colStatus" maxWidth="100" minWidth="90" text="STATUS">
+                                <TableColumn fx:id="colStatus" maxWidth="105" minWidth="90" text="STATUS">
                                     <cellValueFactory><PropertyValueFactory property="status" /></cellValueFactory>
                                 </TableColumn>
 

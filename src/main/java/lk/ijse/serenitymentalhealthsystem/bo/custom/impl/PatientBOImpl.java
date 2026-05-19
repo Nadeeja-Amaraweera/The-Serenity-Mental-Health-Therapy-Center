@@ -120,7 +120,7 @@ public class PatientBOImpl implements PatientBO {
     }
 
     @Override
-    public boolean deletePatient(Long id) throws Exception {
+    public boolean deletePatient(String id) throws Exception {
         return patientDAO.delete(id);
     }
 }

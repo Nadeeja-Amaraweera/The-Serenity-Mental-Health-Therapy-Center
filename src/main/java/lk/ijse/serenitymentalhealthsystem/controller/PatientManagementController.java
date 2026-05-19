@@ -169,7 +169,7 @@ public class PatientManagementController implements Initializable, DashboardCont
         Optional<ButtonType> result = alert.showAndWait();
 
         if (result.isPresent() && result.get() == ButtonType.OK) {
-            boolean rs = patientBO.deletePatient(patientId);
+            boolean rs = patientBO.deletePatient(String.valueOf(patientId));
             if (rs) {
                 loadPatients();
                 Alert alert1 = new Alert(Alert.AlertType.INFORMATION);

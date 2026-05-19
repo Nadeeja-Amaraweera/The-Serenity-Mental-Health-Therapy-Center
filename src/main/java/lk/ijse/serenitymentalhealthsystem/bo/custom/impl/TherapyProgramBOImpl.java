@@ -21,17 +21,17 @@ public class TherapyProgramBOImpl implements TherapyProgramBO {
 
         for (TherapyProgram program : therapyPrograms) {
 
-            TherapyProgramDTO dto = new TherapyProgramDTO();
-            dto.setProgramId(program.getProgramId());
-            dto.setProgramName(program.getProgramName());
-            dto.setTherapyType(program.getTherapyType());
-            dto.setDuration(program.getDuration());
-            dto.setFrequency(program.getFrequency());
-            dto.setStartDate(program.getStartDate());
-            dto.setEndDate(program.getEndDate());
-            dto.setStatus(program.getStatus());
-            dto.setDescription(program.getDescription());
-
+            therapyProgramDTOs.add(new TherapyProgramDTO(
+                    program.getProgramId(),
+                    program.getProgramName(),
+                    program.getTherapyType(),
+                    program.getDuration(),
+                    program.getFrequency(),
+                    program.getStartDate(),
+                    program.getEndDate(),
+                    program.getStatus(),
+                    program.getDescription()
+            ));
         }
         return therapyProgramDTOs;
     }
@@ -74,11 +74,23 @@ public class TherapyProgramBOImpl implements TherapyProgramBO {
 
     @Override
     public boolean updateProgram(TherapyProgramDTO therapyProgramDTO) throws Exception {
-        return false;
+        TherapyProgram therapyProgram = new TherapyProgram();
+
+        therapyProgram.setProgramId(therapyProgramDTO.getProgramId());
+        therapyProgram.setProgramName(therapyProgramDTO.getProgramName());
+        therapyProgram.setTherapyType(therapyProgramDTO.getTherapyType());
+        therapyProgram.setDuration(therapyProgramDTO.getDuration());
+        therapyProgram.setFrequency(therapyProgramDTO.getFrequency());
+        therapyProgram.setStartDate(therapyProgramDTO.getStartDate());
+        therapyProgram.setEndDate(therapyProgramDTO.getEndDate());
+        therapyProgram.setStatus(therapyProgramDTO.getStatus());
+        therapyProgram.setDescription(therapyProgramDTO.getDescription());
+
+        return therapyProgramDAO.update(therapyProgram);
     }
 
     @Override
-    public boolean deleteProgram(Long id) throws Exception {
-        return false;
+    public boolean deleteProgram(String id) throws Exception {
+        return therapyProgramDAO.delete(id);
     }
 }

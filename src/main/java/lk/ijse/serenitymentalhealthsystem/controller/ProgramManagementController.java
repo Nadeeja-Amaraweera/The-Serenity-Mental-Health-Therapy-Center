@@ -2,6 +2,8 @@ package lk.ijse.serenitymentalhealthsystem.controller;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -9,12 +11,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import lk.ijse.serenitymentalhealthsystem.bo.BOFactory;
 import lk.ijse.serenitymentalhealthsystem.bo.BOTypes;
 import lk.ijse.serenitymentalhealthsystem.bo.custom.TherapyProgramBO;
 import lk.ijse.serenitymentalhealthsystem.dto.TherapyProgramDTO;
+import lk.ijse.serenitymentalhealthsystem.tm.TherapyProgramTM;
 
 /**
  * FXML Controller class for Therapy Program Management
@@ -57,16 +62,15 @@ public class ProgramManagementController implements Initializable {
     @FXML private Button btnExport;
 
 
-    @FXML private TableView<Object> tblPrograms;
-    @FXML private TableColumn<Object, Integer> colProgramId;
-    @FXML private TableColumn<Object, String> colProgramName;
-    @FXML private TableColumn<Object, String> colTherapyType;
-    @FXML private TableColumn<Object, Integer> colDuration;
-    @FXML private TableColumn<Object, String> colFrequency;
-    @FXML private TableColumn<Object, LocalDate> colStartDate;
-    @FXML private TableColumn<Object, LocalDate> colEndDate;
-    @FXML private TableColumn<Object, String> colStatus;
-    @FXML private TableColumn<Object, String> colActions;
+    @FXML private TableView<TherapyProgramTM> tblPrograms;
+    @FXML private TableColumn<TherapyProgramTM, Integer> colProgramId;
+    @FXML private TableColumn<TherapyProgramTM, String> colProgramName;
+    @FXML private TableColumn<TherapyProgramTM, String> colTherapyType;
+    @FXML private TableColumn<TherapyProgramTM, Integer> colDuration;
+    @FXML private TableColumn<TherapyProgramTM, String> colFrequency;
+    @FXML private TableColumn<TherapyProgramTM, LocalDate> colStartDate;
+    @FXML private TableColumn<TherapyProgramTM, LocalDate> colEndDate;
+    @FXML private TableColumn<TherapyProgramTM, String> colStatus;
 
 
     @FXML private Button btnFirstPage;
@@ -80,8 +84,34 @@ public class ProgramManagementController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
         initializeUI();
         loadProgramData();
+
+        tblPrograms.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> {
+
+                    if (newValue != null) {
+                        btnUpdate.setDisable(false);
+                        btnDelete.setDisable(false);
+                        btnSave.setDisable(true);
+
+                        txtProgramName.setText(newValue.getProgramName());
+                        cmbTherapyType.setValue(newValue.getTherapyType());
+                        txtDuration.setText(String.valueOf(newValue.getDuration()));
+                        cmbFrequency.setValue(newValue.getFrequency());
+
+                        dpStartDate.setValue(newValue.getStartDate());
+                        dpEndDate.setValue(newValue.getEndDate());
+
+                        cmbStatus.setValue(newValue.getStatus());
+
+                        txtDescription.setText(newValue.getDescription());
+
+                    }
+                }
+
+        );
     }
 
 
@@ -112,8 +142,14 @@ public class ProgramManagementController implements Initializable {
 
 
     private void configureTableColumns() {
-        // Column configuration will depend on the data model
-        // This is a placeholder for actual implementation
+        colProgramId.setCellValueFactory(new PropertyValueFactory<>("programId"));
+        colProgramName.setCellValueFactory(new PropertyValueFactory<>("programName"));
+        colTherapyType.setCellValueFactory(new PropertyValueFactory<>("therapyType"));
+        colDuration.setCellValueFactory(new PropertyValueFactory<>("duration"));
+        colFrequency.setCellValueFactory(new PropertyValueFactory<>("frequency"));
+        colStartDate.setCellValueFactory(new PropertyValueFactory<>("startDate"));
+        colEndDate.setCellValueFactory(new PropertyValueFactory<>("endDate"));
+        colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
     }
 
 
@@ -135,12 +171,30 @@ public class ProgramManagementController implements Initializable {
         cmbFilterType.setOnAction(e -> applyFilters());
     }
 
-    /**
-     * Load program data into the table
-     */
     private void loadProgramData() {
-        // TODO: Implement data loading from DAO
-        // This will fetch programs from database and populate the table
+        try {
+
+        List<TherapyProgramDTO> list = therapyProgramBO.getAllPrograms();
+        ObservableList<TherapyProgramTM> observableList = FXCollections.observableArrayList();
+
+        for (TherapyProgramDTO dto : list) {
+            observableList.add(new TherapyProgramTM(
+                    dto.getProgramId(),
+                    dto.getProgramName(),
+                    dto.getTherapyType(),
+                    dto.getDuration(),
+                    dto.getFrequency(),
+                    dto.getStartDate(),
+                    dto.getEndDate(),
+                    dto.getDescription(),
+                    dto.getStatus()
+            ));
+        }
+        tblPrograms.setItems(observableList);
+        } catch (Exception e){
+            showError("Data Load Error", "Failed to load therapy programs: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -200,9 +254,7 @@ public class ProgramManagementController implements Initializable {
         }
     }
 
-    /**
-     * Handle Update Program button action
-     */
+
     @FXML
     private void UpdateProgram(ActionEvent event) {
         if (tblPrograms.getSelectionModel().isEmpty()) {
@@ -216,8 +268,34 @@ public class ProgramManagementController implements Initializable {
         }
 
         try {
-            // TODO: Implement update logic
-            // Get selected program and update its data
+            String programId = tblPrograms.getSelectionModel().getSelectedItem().getProgramId();
+            String programName = txtProgramName.getText();
+            String therapyType = cmbTherapyType.getValue();
+            int duration = Integer.parseInt(txtDuration.getText());
+            String frequency = cmbFrequency.getValue();
+            LocalDate startDate = dpStartDate.getValue();
+            LocalDate endDate = dpEndDate.getValue();
+            String status = cmbStatus.getValue();
+            String description = txtDescription.getText();
+
+            TherapyProgramDTO therapyProgramDTO = new TherapyProgramDTO(
+                    programId,
+                    programName,
+                    therapyType,
+                    duration,
+                    frequency,
+                    startDate,
+                    endDate,
+                    status,
+                    description
+            );
+
+            boolean result = therapyProgramBO.updateProgram(therapyProgramDTO);
+
+            if (!result) {
+                showError("Update Error", "Failed to update therapy program");
+                return;
+            }
 
             showSuccess("Program Updated", "Therapy program has been updated successfully");
             ClearForm(null);
@@ -227,9 +305,6 @@ public class ProgramManagementController implements Initializable {
         }
     }
 
-    /**
-     * Handle Clear Form button action
-     */
     @FXML
     private void ClearForm(ActionEvent event) {
         txtProgramName.clear();
@@ -247,11 +322,9 @@ public class ProgramManagementController implements Initializable {
         // Reset button states
         btnUpdate.setDisable(true);
         btnDelete.setDisable(true);
+        btnSave.setDisable(false);
     }
 
-    /**
-     * Handle Delete Program button action
-     */
     @FXML
     private void DeleteProgram(ActionEvent event) {
         if (tblPrograms.getSelectionModel().isEmpty()) {
@@ -260,14 +333,28 @@ public class ProgramManagementController implements Initializable {
         }
 
         try {
-            // TODO: Show confirmation dialog
-            // if (confirmDelete()) {
-            //     call DAO to delete
-            //     loadProgramData();
-            //     ClearForm(null);
-            // }
+            String programId = tblPrograms.getSelectionModel().getSelectedItem().getProgramId();
 
-            showSuccess("Program Deleted", "Therapy program has been deleted successfully");
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation");
+            alert.setHeaderText("Are you sure?");
+            alert.setContentText("Do you really want to proceed?");
+
+            Optional<ButtonType> result = alert.showAndWait();
+
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                System.out.println("Deletion cancelled by user");
+                boolean rs = therapyProgramBO.deleteProgram(programId);
+                if (rs) {
+                    loadProgramData();
+                    showSuccess("Program Deleted", "Therapy program has been deleted successfully");
+                    ClearForm(null);
+                }
+            }
+
+
+
+            loadProgramData();
         } catch (Exception e) {
             showError("Error", "Failed to delete program: " + e.getMessage());
         }
@@ -291,7 +378,6 @@ public class ProgramManagementController implements Initializable {
         // TODO: Apply filters to table data
         loadProgramData();
     }
-
 
     @FXML
     private void handleExport(ActionEvent event) {

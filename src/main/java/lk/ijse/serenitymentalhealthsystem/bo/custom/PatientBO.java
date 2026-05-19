@@ -13,5 +13,5 @@ public interface PatientBO extends SuperBO {
 
     boolean updatePatient(PatientDTO patientDTO) throws Exception;
 
-    boolean deletePatient(Long id) throws Exception;
+    boolean deletePatient(String id) throws Exception;
 }

@@ -58,7 +58,7 @@ public class PatientDAOImpl implements PatientDAO {
     }
 
     @Override
-    public boolean delete(Long id) throws Exception {
+    public boolean delete(String id) throws Exception {
         Session session = factoryConfiguration.getSession();
         Transaction transaction = session.beginTransaction();
         try {
