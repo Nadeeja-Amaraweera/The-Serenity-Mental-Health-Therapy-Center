@@ -1,6 +1,7 @@
 package lk.ijse.serenitymentalhealthsystem.bo;
 
 import lk.ijse.serenitymentalhealthsystem.bo.custom.impl.PatientBOImpl;
+import lk.ijse.serenitymentalhealthsystem.bo.custom.impl.TherapyProgramBOImpl;
 import lk.ijse.serenitymentalhealthsystem.bo.custom.impl.UserBOImpl;
 
 public class BOFactory {
@@ -19,6 +20,7 @@ public class BOFactory {
         return switch (boTypes) {
             case USER -> (T) new UserBOImpl();
             case PATIENT -> (T) new PatientBOImpl();
+            case THERAPY_PROGRAM -> (T) new TherapyProgramBOImpl();
         };
     }
 }

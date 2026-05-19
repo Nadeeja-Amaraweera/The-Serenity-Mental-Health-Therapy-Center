@@ -77,4 +77,9 @@ public class PatientDAOImpl implements PatientDAO {
             session.close();
         }
     }
+
+    @Override
+    public String getLastId() throws Exception {
+        return "";
+    }
 }

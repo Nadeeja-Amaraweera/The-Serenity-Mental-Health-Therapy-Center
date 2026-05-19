@@ -8,16 +8,13 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
+import lk.ijse.serenitymentalhealthsystem.bo.BOFactory;
+import lk.ijse.serenitymentalhealthsystem.bo.BOTypes;
+import lk.ijse.serenitymentalhealthsystem.bo.custom.TherapyProgramBO;
+import lk.ijse.serenitymentalhealthsystem.dto.TherapyProgramDTO;
 
 /**
  * FXML Controller class for Therapy Program Management
@@ -26,6 +23,7 @@ import javafx.scene.layout.StackPane;
  */
 public class ProgramManagementController implements Initializable {
 
+    private final TherapyProgramBO therapyProgramBO = (TherapyProgramBO) BOFactory.getInstance().getBO(BOTypes.THERAPY_PROGRAM);
 
     @FXML private StackPane mainStackPane;
     @FXML private BorderPane mainContentPane;
@@ -154,6 +152,7 @@ public class ProgramManagementController implements Initializable {
 
         try {
             // Create program object with form data
+            String programId = therapyProgramBO.getNextId();
             String programName = txtProgramName.getText();
             String therapyType = cmbTherapyType.getValue();
             int duration = Integer.parseInt(txtDuration.getText());
@@ -169,8 +168,26 @@ public class ProgramManagementController implements Initializable {
                 return;
             }
 
-            // TODO: Call DAO to save program
-            // programBO.saveProgram(new ProgramDTO(...));
+            TherapyProgramDTO therapyProgramDTO = new TherapyProgramDTO(
+                    programId,
+                    programName,
+                    therapyType,
+                    duration,
+                    frequency,
+                    startDate,
+                    endDate,
+                    status,
+                    description
+            );
+
+            System.out.println("Saving program: " + therapyProgramDTO);
+
+            boolean result = therapyProgramBO.saveProgram(therapyProgramDTO);
+
+            if (!result) {
+                showError("Save Error", "Failed to save therapy program");
+                return;
+            }
 
             showSuccess("Program Saved", "Therapy program has been saved successfully");
             ClearForm(null);
@@ -179,6 +196,7 @@ public class ProgramManagementController implements Initializable {
             showError("Input Error", "Duration must be a valid number");
         } catch (Exception e) {
             showError("Error", "Failed to save program: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -255,13 +273,7 @@ public class ProgramManagementController implements Initializable {
         }
     }
 
-    // ╔════════════════════════════════════════════════════╗
-    // ║ TABLE & SEARCH/FILTER HANDLERS                     ║
-    // ╚════════════════════════════════════════════════════╝
 
-    /**
-     * Perform search on programs
-     */
     private void performSearch(String searchTerm) {
         // TODO: Implement search functionality
         // Filter table based on program name, type, or therapist
@@ -272,9 +284,6 @@ public class ProgramManagementController implements Initializable {
         }
     }
 
-    /**
-     * Apply filters to program list
-     */
     private void applyFilters() {
         String statusFilter = cmbFilterStatus.getValue();
         String typeFilter = cmbFilterType.getValue();
@@ -332,13 +341,6 @@ public class ProgramManagementController implements Initializable {
         loadProgramData();
     }
 
-    // ╔════════════════════════════════════════════════════╗
-    // ║ VALIDATION & HELPER METHODS                        ║
-    // ╚════════════════════════════════════════════════════╝
-
-    /**
-     * Validate all required form fields
-     */
     private boolean validateFormFields() {
         return !txtProgramName.getText().trim().isEmpty() &&
                 cmbTherapyType.getValue() != null &&
@@ -349,19 +351,26 @@ public class ProgramManagementController implements Initializable {
                 cmbStatus.getValue() != null;
     }
 
-    /**
-     * Show error message dialog
-     */
+
     private void showError(String title, String message) {
-        System.err.println(title + ": " + message);
-        // TODO: Implement proper error dialog using javafx.scene.control.Alert
+
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+
+        alert.showAndWait();
     }
 
-    /**
-     * Show success message dialog
-     */
     private void showSuccess(String title, String message) {
-        System.out.println(title + ": " + message);
-        // TODO: Implement proper success dialog using javafx.scene.control.Alert
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+
+        alert.showAndWait();
     }
 }

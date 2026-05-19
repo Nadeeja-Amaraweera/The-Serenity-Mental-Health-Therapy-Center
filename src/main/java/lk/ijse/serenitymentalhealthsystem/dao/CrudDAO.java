@@ -10,4 +10,6 @@ public interface CrudDAO<T> extends SuperDAO {
     boolean update(T entity) throws Exception;
 
     boolean delete(Long id) throws Exception;
+
+    String getLastId() throws Exception;
 }

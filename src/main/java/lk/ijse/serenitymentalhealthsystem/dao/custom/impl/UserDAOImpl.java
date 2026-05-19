@@ -47,6 +47,11 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
+    public String getLastId() throws Exception {
+        return "";
+    }
+
+    @Override
     public User findByUsername(String username, String password) throws SQLException {
         Session session = FactoryConfiguration
                 .getInstance()

@@ -1,6 +1,7 @@
 package lk.ijse.serenitymentalhealthsystem.config;
 
 import lk.ijse.serenitymentalhealthsystem.entity.Patient;
+import lk.ijse.serenitymentalhealthsystem.entity.TherapyProgram;
 import lk.ijse.serenitymentalhealthsystem.entity.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -17,6 +18,7 @@ public class FactoryConfiguration {
 
         configuration.addAnnotatedClass(User.class);
         configuration.addAnnotatedClass(Patient.class);
+        configuration.addAnnotatedClass(TherapyProgram.class);
 
         sessionFactory = configuration.buildSessionFactory();
     }
@@ -32,11 +34,6 @@ public class FactoryConfiguration {
         return sessionFactory.openSession();
     }
 
-    // return same object
-    // thread bound session
-    // auto close -> commit , rollback
-    // recommend for layered dao + (service) bo architecture
-    //     <property name="hibernate.current_session_context_class">thread</property>
     public Session getCurrentSession() {
         return sessionFactory.getCurrentSession();
     }

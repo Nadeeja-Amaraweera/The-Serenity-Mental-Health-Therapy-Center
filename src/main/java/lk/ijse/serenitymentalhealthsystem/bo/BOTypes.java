@@ -1,5 +1,5 @@
 package lk.ijse.serenitymentalhealthsystem.bo;
 
 public enum BOTypes {
-    USER,PATIENT
+    USER,PATIENT,THERAPY_PROGRAM
 }

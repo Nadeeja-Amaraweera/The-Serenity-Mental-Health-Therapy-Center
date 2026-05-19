@@ -1,6 +1,7 @@
 package lk.ijse.serenitymentalhealthsystem.dao;
 
 import lk.ijse.serenitymentalhealthsystem.dao.custom.impl.PatientDAOImpl;
+import lk.ijse.serenitymentalhealthsystem.dao.custom.impl.TherapyProgramDAOImpl;
 import lk.ijse.serenitymentalhealthsystem.dao.custom.impl.UserDAOImpl;
 
 public class DAOFactory {
@@ -20,6 +21,7 @@ public class DAOFactory {
        return switch (daoType){
             case USER ->(T) new UserDAOImpl();
            case PATIENT -> (T) new PatientDAOImpl();
+           case THERAPY_PROGRAM -> (T) new TherapyProgramDAOImpl();
        };
     }
 }

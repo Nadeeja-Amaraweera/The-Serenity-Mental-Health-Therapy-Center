@@ -24,8 +24,6 @@ public class NewPatientController implements Initializable {
 
     private final PatientBO patientBO = BOFactory.getInstance().getBO(BOTypes.PATIENT);
 
-    private final PatientManagementController patientManagementController = new PatientManagementController();
-
     /* Personal Information Fields */
     @FXML
     private TextField txtFirstName;

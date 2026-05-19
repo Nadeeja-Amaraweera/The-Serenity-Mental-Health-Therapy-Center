@@ -54,8 +54,6 @@
 
                 <Button fx:id="therapistManagementBtn" onAction="#therapistManagementPage" prefHeight="26.0" prefWidth="246.0" styleClass="sidebar-button" text="Therapist Management" />
 
-                <Button fx:id="therapyManagementBtn" onAction="#therapyProgrammePage" prefHeight="26.0" prefWidth="246.0" styleClass="sidebar-button" text="Therapy Programme" />
-
                 <Button fx:id="programManagementBtn" onAction="#programManagementPage" prefHeight="26.0" prefWidth="268.0" styleClass="sidebar-button" text="Program Management" />
 
                 <Button fx:id="sessionSchedulingBtn"  prefHeight="26.0" prefWidth="248.0" styleClass="sidebar-button" text="Session Scheduling" />

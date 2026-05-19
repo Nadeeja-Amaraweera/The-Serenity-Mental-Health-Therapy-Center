@@ -16,8 +16,7 @@ import java.time.LocalDate;
 public class TherapyProgram {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long programId;
+    private String programId;
 
     @Column(nullable = false, length = 100)
     private String programName;
