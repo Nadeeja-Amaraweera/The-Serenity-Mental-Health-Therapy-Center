@@ -38,11 +38,11 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public boolean update(User entity) throws Exception {
-        return false;
+       return false;
     }
 
     @Override
-    public boolean delete(String id) throws Exception {
+    public boolean delete(Long id) throws Exception {
         return false;
     }
 

@@ -1,6 +1,7 @@
 package lk.ijse.serenitymentalhealthsystem.tm;
 
 import javafx.scene.control.Button;
+import javafx.scene.layout.HBox;
 import lombok.*;
 
 @AllArgsConstructor
@@ -18,5 +19,5 @@ public class PatientTM {
 //    private Integer programCount;
 //    private String registrationDate;
     private String status;
-    private Button actions;
+    private HBox actions;
 }

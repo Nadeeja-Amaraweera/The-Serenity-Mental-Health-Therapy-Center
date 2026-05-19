@@ -42,11 +42,39 @@ public class PatientDAOImpl implements PatientDAO {
 
     @Override
     public boolean update(Patient entity) throws Exception {
-        return false;
+        Session session = factoryConfiguration.getSession();
+        Transaction transaction = session.beginTransaction();
+
+        try {
+            session.merge(entity);
+            transaction.commit();
+            return true;
+        } catch (Exception e) {
+            transaction.rollback();
+            return false;
+        } finally {
+            session.close();
+        }
     }
 
     @Override
-    public boolean delete(String id) throws Exception {
-        return false;
+    public boolean delete(Long id) throws Exception {
+        Session session = factoryConfiguration.getSession();
+        Transaction transaction = session.beginTransaction();
+        try {
+            Patient patient = session.get(Patient.class, id);
+            if (patient != null) {
+                session.remove(patient);
+                transaction.commit();
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            transaction.rollback();
+            return false;
+        } finally {
+            session.close();
+        }
     }
 }

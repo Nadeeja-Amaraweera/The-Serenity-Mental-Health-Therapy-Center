@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.Period;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -17,49 +18,30 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import lk.ijse.serenitymentalhealthsystem.bo.BOFactory;
 import lk.ijse.serenitymentalhealthsystem.bo.BOTypes;
 import lk.ijse.serenitymentalhealthsystem.bo.custom.PatientBO;
 import lk.ijse.serenitymentalhealthsystem.dto.PatientDTO;
-import lk.ijse.serenitymentalhealthsystem.entity.Patient;
 import lk.ijse.serenitymentalhealthsystem.tm.PatientTM;
 
 /**
- * FXML Controller class for Patient Management
- * Manages patient list, detail panel, and dynamic view loading via StackPane
- *
  * @author nadeeja
  */
 public class PatientManagementController implements Initializable, DashboardControl {
 
-    /**
-     * Main StackPane container that holds the primary patient management view
-     */
     @FXML
     private StackPane mainStackPane;
 
-    /**
-     * Overlay StackPane for loading additional views on top of the main view
-     * Can be used to load dialogs, forms, or other overlays
-     */
     @FXML
     private StackPane overlayStackPane;
 
-    /**
-     * BorderPane within the StackPane for layout management
-     */
     @FXML
     private BorderPane mainContentPane;
-
-    /**
-     * Initializes the controller class.
-     */
 
     @FXML
     private TableView<PatientTM> tblPatients;
@@ -118,17 +100,41 @@ public class PatientManagementController implements Initializable, DashboardCont
         }
     }
 
-    private void loadPatients() {
+    public void loadPatients() {
         try {
             List<PatientDTO> list = patientBO.getAllPatients();
             ObservableList<PatientTM> observableList = FXCollections.observableArrayList();
+
             for (PatientDTO patientDTO : list) {
                 Button btnView = new Button("View");
+                Button btnDelete = new Button("Delete");
+
+                HBox buttons = new HBox(2); // spacing 10
+
+                buttons.getChildren().addAll(btnView, btnDelete);
+
                 btnView.setOnAction(event -> {
-                    // Handle view patient details
-                    System.out.println("View details for patient ID: " + patientDTO.getPatientId());
-                    // You can load a detailed view in the overlay here
-                    loadViewInOverlay("/view/PatientDetails.fxml");
+                    System.out.println("View details for patient ID: "
+                            + patientDTO.getPatientId());
+
+                    NewPatientController controller =
+                            loadViewInOverlay("/view/NewPatient.fxml");
+
+                    if (controller != null) {
+                        controller.viewPatientDetails(patientDTO);
+                        controller.enableUpdateMode();
+
+                    }
+                });
+
+                btnDelete.setOnAction(event -> {
+
+                            Long id =  patientDTO.getPatientId();
+                    try {
+                        deletePatient(id);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
                 });
 
                 int age = Period.between(patientDTO.getDateOfBirth(), java.time.LocalDate.now()).getYears();
@@ -141,7 +147,7 @@ public class PatientManagementController implements Initializable, DashboardCont
                         patientDTO.getPhone(),
                         patientDTO.getEmail(),
                         patientDTO.getStatus(),
-                        btnView
+                        buttons
 
                 ));
             }
@@ -154,29 +160,34 @@ public class PatientManagementController implements Initializable, DashboardCont
         }
     }
 
-    /**
-     * Handle Add New Patient button click
-     * Loads NewPatient form into the overlay StackPane
-     */
+    private void deletePatient(Long patientId) throws Exception {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText("Are you sure?");
+        alert.setContentText("Do you really want to proceed?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            boolean rs = patientBO.deletePatient(patientId);
+            if (rs) {
+                loadPatients();
+                Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+                alert1.setTitle("Success");
+                alert1.setHeaderText(null);
+                alert1.setContentText("Patient deleted successfully!");
+                alert1.showAndWait();
+            }
+        }
+    }
+
     @FXML
     private void AddNewPatient(ActionEvent event) {
         System.out.println("Add New Patient button clicked");
         loadViewInOverlay("/view/NewPatient.fxml");
     }
 
-    /**
-     * Load a view into the main content area (BorderPane)
-     * Legacy method for compatibility with DashboardControl interface
-     */
-
-
-    /**
-     * Load a view into the overlay StackPane
-     * Used for modal-like overlays, dialogs, and forms that appear on top
-     *
-     * @param fxmlPath Path to the FXML file (e.g., "/view/NewPatient.fxml")
-     */
-    public void loadViewInOverlay(String fxmlPath) {
+    public NewPatientController loadViewInOverlay(String fxmlPath) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
             Parent root = loader.load();
@@ -186,20 +197,20 @@ public class PatientManagementController implements Initializable, DashboardCont
             overlayStackPane.setVisible(true);
             overlayStackPane.setManaged(true);
 
-            // If the loaded controller has a close button, set up close handler
-            if (loader.getController() instanceof NewPatientController) {
-                NewPatientController controller = loader.getController();
-                controller.setCloseCallback(this::hideOverlay);
-            }
+            NewPatientController controller =
+                    loader.getController();
+
+            controller.setCloseCallback(this::hideOverlay);
+
+            return controller;
+
         } catch (IOException e) {
             System.err.println("Error loading overlay view: " + fxmlPath);
             e.printStackTrace();
         }
+        return null;
     }
 
-    /**
-     * Hide the overlay StackPane
-     */
     public void hideOverlay() {
         if (overlayStackPane != null) {
             overlayStackPane.getChildren().clear();
@@ -208,14 +219,14 @@ public class PatientManagementController implements Initializable, DashboardCont
         }
     }
 
-    /**
-     * Load a view into the main content area (StackPane)
-     *
-     * @param fxmlPath Path to the FXML file
-     */
     public void loadViewInMain(String fxmlPath) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource(fxmlPath));
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource(fxmlPath)
+            );
+
+            Parent root = loader.load();
+
             mainStackPane.getChildren().clear();
             mainStackPane.getChildren().add(root);
         } catch (IOException e) {

@@ -6,7 +6,6 @@ import lk.ijse.serenitymentalhealthsystem.dao.DAOTypes;
 import lk.ijse.serenitymentalhealthsystem.dao.custom.PatientDAO;
 import lk.ijse.serenitymentalhealthsystem.dto.PatientDTO;
 import lk.ijse.serenitymentalhealthsystem.entity.Patient;
-import org.w3c.dom.ls.LSInput;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +13,6 @@ import java.util.List;
 public class PatientBOImpl implements PatientBO {
 
     private final PatientDAO patientDAO = (PatientDAO)DAOFactory.getInstance().getDAO(DAOTypes.PATIENT);
-
 
     @Override
     public boolean savePatient(PatientDTO patientDTO) throws Exception {
@@ -83,5 +81,46 @@ public class PatientBOImpl implements PatientBO {
             ));
         }
         return patientDTOList;
+    }
+
+    @Override
+    public boolean updatePatient(PatientDTO patientDTO) throws Exception {
+        Patient  patient = new Patient();
+        // Personal Information
+        patient.setPatientId(patientDTO.getPatientId());
+        patient.setFirstName(patientDTO.getFirstName());
+        patient.setLastName(patientDTO.getLastName());
+        patient.setDateOfBirth(patientDTO.getDateOfBirth());
+        patient.setGender(patientDTO.getGender());
+
+        // Contact Information
+        patient.setEmail(patientDTO.getEmail());
+        patient.setPhone(patientDTO.getPhone());
+        patient.setAddress(patientDTO.getAddress());
+        patient.setCity(patientDTO.getCity());
+        patient.setState(patientDTO.getState());
+
+        // Medical Information
+        patient.setBloodType(patientDTO.getBloodType());
+        patient.setAllergies(patientDTO.getAllergies());
+        patient.setMedicalHistory(patientDTO.getMedicalHistory());
+
+        // Therapy Information
+        patient.setPrimaryConcern(patientDTO.getPrimaryConcern());
+        patient.setTherapyType(patientDTO.getTherapyType());
+        patient.setStatus(patientDTO.getStatus());
+        patient.setNotes(patientDTO.getNotes());
+
+        // Emergency Contact
+        patient.setEmergencyName(patientDTO.getEmergencyName());
+        patient.setEmergencyPhone(patientDTO.getEmergencyPhone());
+        patient.setRelationship(patientDTO.getRelationship());
+
+        return patientDAO.update(patient);
+    }
+
+    @Override
+    public boolean deletePatient(Long id) throws Exception {
+        return patientDAO.delete(id);
     }
 }

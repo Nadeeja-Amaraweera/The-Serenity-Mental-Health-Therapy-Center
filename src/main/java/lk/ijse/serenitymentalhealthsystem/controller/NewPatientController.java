@@ -24,6 +24,8 @@ public class NewPatientController implements Initializable {
 
     private final PatientBO patientBO = BOFactory.getInstance().getBO(BOTypes.PATIENT);
 
+    private final PatientManagementController patientManagementController = new PatientManagementController();
+
     /* Personal Information Fields */
     @FXML
     private TextField txtFirstName;
@@ -85,6 +87,10 @@ public class NewPatientController implements Initializable {
     /* Close callback — set by parent controller */
     private Runnable closeCallback;
 
+    private Long currentPatientId;
+
+
+
     /**
      * Initializes the controller class.
      */
@@ -97,17 +103,101 @@ public class NewPatientController implements Initializable {
      * Initialize button action handlers
      */
     private void initializeButtonActions() {
-        btnSave.setOnAction(event -> handleSavePatient());
+        btnSave.setOnAction(event -> {
+            if (btnSave.getText().equals("Save Patient")) {
+                handleSavePatient();
+            } else {
+                handleUpdatePatient();
+            }
+        });
         btnCancel.setOnAction(event -> handleCancel());
         btnReset.setOnAction(event -> handleReset());
         btnClose.setOnAction(event -> handleClose());
     }
 
-    /**
-     * Handle Save Patient action
-     */
+    private void handleUpdatePatient() {
+        System.out.println("Update button pressed");
+        if (!validateForm()) {
+            showAlert(Alert.AlertType.WARNING, "Validation Error", "Please fill in all required fields");
+            return;
+        }
+        String firstName = txtFirstName.getText();
+        String lastName = txtLastName.getText();
+        LocalDate dateOfBirth = dpDateOfBirth.getValue();
+        String gender = cmbGender.getValue();
+
+        /* Contact Information */
+        String email = txtEmail.getText();
+        String phone = txtPhone.getText();
+        String address = txtAddress.getText();
+        String city = txtCity.getText();
+        String state = txtState.getText();
+
+        /* Medical Information */
+        String bloodType = cmbBloodType.getValue();
+        String allergies = txtAllergies.getText();
+        String medicalHistory = taMedicalHistory.getText();
+
+        /* Therapy Information */
+        String primaryConcern = txtPrimaryConcern.getText();
+        String therapyType = cmbTherapyType.getValue();
+        String status = cmbStatus.getValue();
+        String notes = taNotes.getText();
+
+        /* Emergency Contact */
+        String emergencyName = txtEmergencyName.getText();
+        String emergencyPhone = txtEmergencyPhone.getText();
+        String relationship = txtRelationship.getText();
+
+        PatientDTO patientDTO = new PatientDTO(
+                currentPatientId,
+                firstName,
+                lastName,
+                dateOfBirth,
+                gender,
+
+                // Contact Information
+                email,
+                phone,
+                address,
+                city,
+                state,
+
+                // Medical Information
+                bloodType,
+                allergies,
+                medicalHistory,
+
+                // Therapy Information
+                primaryConcern,
+                therapyType,
+                status,
+                notes,
+
+                // Emergency Contact
+                emergencyName,
+                emergencyPhone,
+                relationship
+        );
+
+        try {
+            System.out.println(patientDTO);
+           boolean result = patientBO.updatePatient(patientDTO);
+            if (result) {
+                showAlert(Alert.AlertType.INFORMATION, "Success", "Patient record updated successfully");
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+         clearForm();
+
+    }
+
     private void handleSavePatient() {
-        // Validate form fields
+
+        System.out.println("Save button pressed");
+
         if (!validateForm()) {
             showAlert(Alert.AlertType.WARNING, "Validation Error", "Please fill in all required fields");
             return;
@@ -180,49 +270,71 @@ public class NewPatientController implements Initializable {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
-
-        // TODO: Implement patient save logic using BO/DAO
-
-        // Clear form after successful save
         clearForm();
     }
 
-    /**
-     * Handle Cancel action
-     */
+    public void viewPatientDetails(PatientDTO dto){
+
+        currentPatientId = dto.getPatientId();
+
+        txtFirstName.setText(dto.getFirstName());
+        txtLastName.setText(dto.getLastName());
+
+        dpDateOfBirth.setValue(dto.getDateOfBirth());
+
+        cmbGender.setValue(dto.getGender());
+
+        txtEmail.setText(dto.getEmail());
+        txtPhone.setText(dto.getPhone());
+
+        txtAddress.setText(dto.getAddress());
+        txtCity.setText(dto.getCity());
+        txtState.setText(dto.getState());
+
+        cmbBloodType.setValue(dto.getBloodType());
+
+        txtAllergies.setText(dto.getAllergies());
+
+        taMedicalHistory.setText(dto.getMedicalHistory());
+
+        txtPrimaryConcern.setText(dto.getPrimaryConcern());
+
+        cmbTherapyType.setValue(dto.getTherapyType());
+
+        cmbStatus.setValue(dto.getStatus());
+
+        taNotes.setText(dto.getNotes());
+
+        txtEmergencyName.setText(dto.getEmergencyName());
+
+        txtEmergencyPhone.setText(dto.getEmergencyPhone());
+
+        txtRelationship.setText(dto.getRelationship());
+
+    }
+
     private void handleCancel() {
         // TODO: Navigate back to PatientManagement or close the window
         handleClose(); // For now, just close the overlay
         System.out.println("Cancel pressed - TODO: Navigate back");
     }
 
-    /**
-     * Handle Close action — closes the overlay
-     * This method closes the NewPatient form overlay
-     */
     private void handleClose() {
+
         clearForm();
         if (closeCallback != null) {
             closeCallback.run();
         }
     }
 
-
     public void setCloseCallback(Runnable callback) {
         this.closeCallback = callback;
     }
 
-    /**
-     * Handle Reset action
-     */
     private void handleReset() {
         clearForm();
     }
 
-    /**
-     * Validate form fields
-     */
     private boolean validateForm() {
         return !txtFirstName.getText().trim().isEmpty() &&
                !txtLastName.getText().trim().isEmpty() &&
@@ -232,9 +344,6 @@ public class NewPatientController implements Initializable {
                cmbStatus.getValue() != null;
     }
 
-    /**
-     * Clear all form fields
-     */
     private void clearForm() {
         txtFirstName.clear();
         txtLastName.clear();
@@ -257,14 +366,15 @@ public class NewPatientController implements Initializable {
         txtRelationship.clear();
     }
 
-    /**
-     * Show alert dialog
-     */
     private void showAlert(Alert.AlertType type, String title, String message) {
         Alert alert = new Alert(type);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    public void enableUpdateMode(){
+        btnSave.setText("Update");
     }
 }
